@@ -1,0 +1,15 @@
+@import '/node_modules/intl-tel-input/build/css/intlTelInput.css';
+
+.iti__flag {
+  background-image: url('/Users/vladislavsirotkin/Documents/registration_form/dist/images/vendor/intl-tel-input/build/flags.png');
+}
+
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .iti__flag {
+    background-image: url('/Users/vladislavsirotkin/Documents/registration_form/source/css/images/flags@2x.png');
+  }
+}
+
+svg {
+  margin-bottom: 0.2rem;
+}
