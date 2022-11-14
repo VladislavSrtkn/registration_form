@@ -77,7 +77,12 @@
               <h3>Enter your date of birth</h3>
               <p>Later you can hide it in your profile settings</p>
               <div class="col-md-4">
-                <input type="date" class="form-control" name="dateOfBirth" />
+                <input
+                  type="date"
+                  class="form-control"
+                  name="dateOfBirth"
+                  id="dateOfBirth"
+                />
                 <div class="invalid-feedback">Incorrect date of birth</div>
                 <div class="valid-feedback">Looks good!</div>
               </div>
@@ -98,7 +103,7 @@
                   </svg>
                   go prev
                 </button>
-                <button class="btn btn-info">
+                <button class="btn btn-info" id="goStep3">
                   go next
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -120,9 +125,18 @@
             <!-- Step 3 -->
             <div id="step3" class="shadow rounded row my-3 py-3 d-none">
               <h3>Enter your email</h3>
-              <p>........</p>
+              <p>
+                Enter your email to receive the most interesting news and
+                offers.
+              </p>
               <div class="col-md-4">
-                <input type="email" class="form-control" name="email" />
+                <input
+                  type="email"
+                  class="form-control"
+                  name="email"
+                  id="email"
+                  required
+                />
                 <div class="invalid-feedback">Incorrect email</div>
                 <div class="valid-feedback">Looks good!</div>
               </div>
@@ -143,7 +157,7 @@
                   </svg>
                   go prev
                 </button>
-                <button class="btn btn-info">
+                <button class="btn btn-info" id="goStep4">
                   go next
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -172,6 +186,9 @@
                   class="form-control"
                   name="phoneNumber"
                   id="phone"
+                  maxlength="20"
+                  oninput="this.value = this.value.replace(/[^0-9,^+]/g, '')"
+                  required
                 />
                 <div class="invalid-feedback">Incorrect phone number</div>
                 <div class="valid-feedback">Looks good!</div>
@@ -193,7 +210,7 @@
                   </svg>
                   go prev
                 </button>
-                <button class="btn btn-info">
+                <button class="btn btn-info" id="goStep5">
                   go next
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -219,12 +236,18 @@
                 Please indicate your gender so that we can contact you correctly
               </p>
               <div class="col-md-4">
-                <input type="radio" name="gender" id="gender1" value="male" />
-                <label for="gender1">Male</label>
+                <input
+                  type="radio"
+                  name="gender"
+                  id="gender1"
+                  value="male"
+                  checked
+                />
+                <label for="gender1" class="mx-1">Male</label>
                 <input type="radio" name="gender" id="gender2" value="female" />
-                <label for="gender2">Female</label>
+                <label for="gender2" class="mx-1">Female</label>
                 <input type="radio" name="gender" id="gender3" value="other" />
-                <label for="gender3">Other</label>
+                <label for="gender3" class="mx-1">Other</label>
                 <div class="invalid-feedback">Gender not selected</div>
                 <div class="valid-feedback">Looks good!</div>
               </div>
@@ -245,7 +268,7 @@
                   </svg>
                   go prev
                 </button>
-                <button class="btn btn-info">
+                <button class="btn btn-info" id="goStep6">
                   go next
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -265,21 +288,35 @@
             </div>
 
             <!-- Step 6 -->
-            <div id="step6" class="shadow rounded row my-3 py-3">
+            <div id="step6" class="shadow rounded row my-3 py-3 d-none">
               <h3>Create a password</h3>
               <p>
                 Create a new password with at least 6 characters. Use a password
                 that cannot be guessed.
               </p>
               <div class="col-md-4">
-                <input type="password" class="form-control" name="password" />
-                <div class="invalid-feedback">Incorrect password</div>
+                <input
+                  type="password"
+                  class="form-control"
+                  name="password"
+                  id="password"
+                  required
+                />
+                <div class="invalid-feedback">
+                  Password must be longer than 6 characters
+                </div>
                 <div class="valid-feedback">Looks good!</div>
               </div>
               <p class="my-3">Please repeat your password</p>
               <div class="col-md-4">
-                <input type="password" class="form-control" name="password" />
-                <div class="invalid-feedback">Incorrect password</div>
+                <input
+                  type="password"
+                  class="form-control"
+                  name="repeatPassword"
+                  id="repeatPassword"
+                  required
+                />
+                <div class="invalid-feedback">Passwords do not match</div>
                 <div class="valid-feedback">Looks good!</div>
               </div>
               <div class="col-12 text-center my-3">

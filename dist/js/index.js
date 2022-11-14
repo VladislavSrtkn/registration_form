@@ -15,21 +15,7 @@ __webpack_require__.r(__webpack_exports__);
 var input = document.querySelector('#phone');
 intl_tel_input__WEBPACK_IMPORTED_MODULE_0___default()(input, {
   preferredCountries: ['me', 'ca']
-  // any initialisation options go here
 });
-
-document.querySelectorAll('.needs-validation').forEach(function (form) {
-  form.addEventListener('submit', function (event) {
-    // if (!form.checkValidity()) {
-    //   // event.preventDefault();
-    //   // event.stopPropagation();
-    // }
-    form.classList.add('was-validated');
-  }
-  //   false
-  );
-});
-
 document.querySelector('#registrationForm').addEventListener('submit', registrationFormSubmit);
 function registrationFormSubmit(event) {
   event.preventDefault();
@@ -37,30 +23,112 @@ function registrationFormSubmit(event) {
   var firstName = formData.get('firstName');
   var lastName = formData.get('lastName');
   var dateOfBirth = formData.get('dateOfBirth');
+  var email = formData.get('email');
   var phoneNumber = formData.get('phoneNumber');
   var gender = formData.get('gender');
   var password = formData.get('password');
-  console.log(firstName, lastName, dateOfBirth, phoneNumber, gender, password);
+  var repeatPassword = formData.get('repeatPassword');
+  if (!checkPasswordLength(password)) {
+    document.querySelector('input[name="password"]').classList.add('is-invalid');
+    return;
+  } else {
+    document.querySelector('#password').classList.remove('is-invalid');
+  }
+  if (!checkPasswordsMatch(password, repeatPassword)) {
+    document.querySelector('#repeatPassword').classList.add('is-invalid');
+    return;
+  } else {
+    document.querySelector('#repeatPassword').classList.remove('is-invalid');
+  }
+  console.log(firstName, lastName, dateOfBirth, email, phoneNumber, gender, password, repeatPassword);
 }
 document.querySelector('#goStep2').addEventListener('click', goToStep2);
 function goToStep2() {
   event.preventDefault();
   var step1 = document.querySelector('#step1');
   step1.classList.add('was-validated');
-  var firstName = document.querySelector('#firstName');
-  var lastName = document.querySelector('#lastName');
-  if (!checkName(firstName, lastName)) {
+  if (!checkName()) {
     return;
   }
   step1.classList.add('d-none');
   var step2 = document.querySelector('#step2');
   step2.classList.remove('d-none');
 }
-function checkName(firstName, lastName) {
+function checkName() {
+  var firstName = document.querySelector('#firstName');
+  var lastName = document.querySelector('#lastName');
   if (firstName.value == '' || lastName.value == '') {
     return false;
   }
   return true;
+}
+document.querySelector('#goStep3').addEventListener('click', goToStep3);
+function goToStep3() {
+  event.preventDefault();
+  var dateInput = document.querySelector('#dateOfBirth');
+  if (!checkDateOfBirth()) {
+    dateInput.classList.add('is-invalid');
+    return false;
+  }
+  var step2 = document.querySelector('#step2');
+  step2.classList.add('d-none');
+  var step3 = document.querySelector('#step3');
+  step3.classList.remove('d-none');
+}
+function checkDateOfBirth() {
+  var dateOfBirth = document.querySelector('#dateOfBirth').value;
+  var today = new Date();
+  if (today < new Date(dateOfBirth) || !dateOfBirth) {
+    return false;
+  } else {
+    return true;
+  }
+}
+document.querySelector('#goStep4').addEventListener('click', goToStep4);
+function goToStep4() {
+  event.preventDefault();
+  var email = document.querySelector('#email');
+  var step3 = document.querySelector('#step3');
+  if (!checkEmail(email.value)) {
+    step3.classList.add('was-validated');
+    return;
+  }
+  step3.classList.add('d-none');
+  var step4 = document.querySelector('#step4');
+  step4.classList.remove('d-none');
+}
+function checkEmail(email) {
+  return String(email).toLowerCase().match(/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
+}
+document.querySelector('#goStep5').addEventListener('click', goToStep5);
+function goToStep5() {
+  event.preventDefault();
+  var step4 = document.querySelector('#step4');
+  step4.classList.add('d-none');
+  var step5 = document.querySelector('#step5');
+  step5.classList.remove('d-none');
+}
+document.querySelector('#goStep6').addEventListener('click', goToStep6);
+function goToStep6() {
+  event.preventDefault();
+  var step5 = document.querySelector('#step5');
+  step5.classList.add('d-none');
+  var step6 = document.querySelector('#step6');
+  step6.classList.remove('d-none');
+}
+function checkPasswordLength(password) {
+  if (password.length < 6) {
+    return false;
+  } else {
+    return true;
+  }
+}
+function checkPasswordsMatch(password, repeat) {
+  if (password != repeat) {
+    return false;
+  } else {
+    return true;
+  }
 }
 
 /***/ }),
