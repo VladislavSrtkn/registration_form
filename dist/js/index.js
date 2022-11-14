@@ -42,6 +42,26 @@ function registrationFormSubmit(event) {
   var password = formData.get('password');
   console.log(firstName, lastName, dateOfBirth, phoneNumber, gender, password);
 }
+document.querySelector('#goStep2').addEventListener('click', goToStep2);
+function goToStep2() {
+  event.preventDefault();
+  var step1 = document.querySelector('#step1');
+  step1.classList.add('was-validated');
+  var firstName = document.querySelector('#firstName');
+  var lastName = document.querySelector('#lastName');
+  if (!checkName(firstName, lastName)) {
+    return;
+  }
+  step1.classList.add('d-none');
+  var step2 = document.querySelector('#step2');
+  step2.classList.remove('d-none');
+}
+function checkName(firstName, lastName) {
+  if (firstName.value == '' || lastName.value == '') {
+    return false;
+  }
+  return true;
+}
 
 /***/ }),
 

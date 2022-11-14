@@ -31,7 +31,7 @@
                   value=""
                   name="firstName"
                   maxlength="20"
-                  oninput="this.value = this.value.replace(/[^a-zа-яё\s]/gi, '');"
+                  oninput="this.value = this.value.replace(/[^a-zа-яё\s-]/gi, '');"
                   required
                 />
                 <div class="invalid-feedback">Incorrect name</div>
@@ -53,7 +53,7 @@
                 <div class="valid-feedback">Looks good!</div>
               </div>
               <div class="col-12 text-center my-3">
-                <button class="btn btn-info">
+                <button class="btn btn-info" id="goStep2">
                   go next
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -73,7 +73,7 @@
             </div>
 
             <!-- Step 2 -->
-            <div id="step2" class="shadow rounded row my-3 py-3">
+            <div id="step2" class="shadow rounded row my-3 py-3 d-none">
               <h3>Enter your date of birth</h3>
               <p>Later you can hide it in your profile settings</p>
               <div class="col-md-4">
@@ -118,7 +118,52 @@
             </div>
 
             <!-- Step 3 -->
-            <div id="step3" class="shadow rounded row my-3 py-3">
+            <div id="step3" class="shadow rounded row my-3 py-3 d-none">
+              <h3>Enter your email</h3>
+              <p>........</p>
+              <div class="col-md-4">
+                <input type="email" class="form-control" name="email" />
+                <div class="invalid-feedback">Incorrect email</div>
+                <div class="valid-feedback">Looks good!</div>
+              </div>
+              <div class="col-12 text-center my-3">
+                <button class="btn btn-warning">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="17"
+                    height="17"
+                    fill="currentColor"
+                    class="bi bi-arrow-bar-left"
+                    viewBox="0 0 16 16"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M12.5 15a.5.5 0 0 1-.5-.5v-13a.5.5 0 0 1 1 0v13a.5.5 0 0 1-.5.5zM10 8a.5.5 0 0 1-.5.5H3.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L3.707 7.5H9.5a.5.5 0 0 1 .5.5z"
+                    />
+                  </svg>
+                  go prev
+                </button>
+                <button class="btn btn-info">
+                  go next
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="17"
+                    height="17"
+                    fill="currentColor"
+                    class="bi bi-arrow-bar-right"
+                    viewBox="0 0 16 16"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M6 8a.5.5 0 0 0 .5.5h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L12.293 7.5H6.5A.5.5 0 0 0 6 8zm-2.5 7a.5.5 0 0 1-.5-.5v-13a.5.5 0 0 1 1 0v13a.5.5 0 0 1-.5.5z"
+                    />
+                  </svg>
+                </button>
+              </div>
+            </div>
+
+            <!-- Step 4 -->
+            <div id="step4" class="shadow rounded row my-3 py-3 d-none">
               <h3>Enter your phone number</h3>
               <p>Enter a phone number where you can be contacted.</p>
               <div class="col-md-4">
@@ -167,8 +212,8 @@
               </div>
             </div>
 
-            <!-- Step 4 -->
-            <div id="step4" class="shadow rounded row my-3 py-3">
+            <!-- Step 5 -->
+            <div id="step5" class="shadow rounded row my-3 py-3 d-none">
               <h3>Enter your gender</h3>
               <p>
                 Please indicate your gender so that we can contact you correctly
@@ -219,8 +264,8 @@
               </div>
             </div>
 
-            <!-- Step 5 -->
-            <div id="step5" class="shadow rounded row my-3 py-3">
+            <!-- Step 6 -->
+            <div id="step6" class="shadow rounded row my-3 py-3">
               <h3>Create a password</h3>
               <p>
                 Create a new password with at least 6 characters. Use a password

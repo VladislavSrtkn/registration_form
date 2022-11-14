@@ -37,3 +37,30 @@ function registrationFormSubmit(event) {
 
   console.log(firstName, lastName, dateOfBirth, phoneNumber, gender, password);
 }
+
+document.querySelector('#goStep2').addEventListener('click', goToStep2);
+
+function goToStep2() {
+  event.preventDefault();
+  const step1 = document.querySelector('#step1');
+  step1.classList.add('was-validated');
+
+  const firstName = document.querySelector('#firstName');
+  const lastName = document.querySelector('#lastName');
+
+  if (!checkName(firstName, lastName)) {
+    return;
+  }
+
+  step1.classList.add('d-none');
+
+  const step2 = document.querySelector('#step2');
+  step2.classList.remove('d-none');
+}
+
+function checkName(firstName, lastName) {
+  if (firstName.value == '' || lastName.value == '') {
+    return false;
+  }
+  return true;
+}
