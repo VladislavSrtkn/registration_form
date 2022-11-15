@@ -9,6 +9,39 @@
     background-image: url('../images/vendor/intl-tel-input/build/flags@2x.png');
   }
 }
+* {
+  font-family: 'Montserrat', sans-serif;
+}
+
+body {
+  background-color: rgb(246 246 252);
+}
+
 svg {
   margin-bottom: 0.2rem;
+}
+
+header {
+  background-color: rgb(0, 110, 255);
+  color: #fff;
+}
+
+a {
+  --bs-link-color: rgb(113, 113, 113);
+}
+a:hover {
+  color: rgb(206, 205, 204);
+}
+
+.cover-container {
+  min-height: 100vh;
+}
+
+.btn-info {
+  --bs-btn-color: #fff;
+  --bs-btn-bg: rgb(0, 110, 255);
+  --bs-btn-border-color: rgb(0, 110, 255);
+  --bs-btn-hover-color: #fff;
+  --bs-btn-hover-bg: rgb(72, 150, 252);
+  --bs-btn-hover-border-color: rgb(72, 150, 252);
 }

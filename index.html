@@ -4,328 +4,364 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="./dist/css/style.css" />
     <title>Document</title>
   </head>
-  <body>
-    <div class="container">
-      <div class="row justify-content-center">
-        <h1 class="text-center py-4">brand logo</h1>
+  <body class="d-flex text-center">
+    <div class="cover-container d-flex w-100 flex-column">
+      <header>
+        <h1 class="text-center py-4">Registration form</h1>
+      </header>
 
-        <div class="py-4 col-10">
-          <form
-            class="row g-3 needs-validation"
-            id="registrationForm"
-            novalidate
+      <div class="py-4 align-self-center col-10">
+        <form class="row g-3" id="registrationForm" novalidate>
+          <!-- Step 1 -->
+          <div
+            id="step1"
+            class="shadow rounded justify-content-center row my-3 py-3"
           >
-            <!-- Step 1 -->
-            <div id="step1" class="shadow rounded row my-3 py-3">
-              <h3>What`s your name?</h3>
-              <p>Please enter your first and last name</p>
-              <div class="col-md-4">
-                <label for="firstName" class="form-label">First name</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="firstName"
-                  value=""
-                  name="firstName"
-                  maxlength="20"
-                  oninput="this.value = this.value.replace(/[^a-zа-яё\s-]/gi, '');"
-                  required
-                />
-                <div class="invalid-feedback">Incorrect name</div>
-                <div class="valid-feedback">Looks good!</div>
-              </div>
-              <div class="col-md-4">
-                <label for="lastName" class="form-label">Last name</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="lastName"
-                  value=""
-                  name="lastName"
-                  maxlength="20"
-                  oninput="this.value = this.value.replace(/[^a-zа-яё\s]/gi, '');"
-                  required
-                />
-                <div class="invalid-feedback">Incorrect last name</div>
-                <div class="valid-feedback">Looks good!</div>
-              </div>
-              <div class="col-12 text-center my-3">
-                <button class="btn btn-info" id="goStep2">
-                  go next
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="17"
-                    height="17"
-                    fill="currentColor"
-                    class="bi bi-arrow-bar-right"
-                    viewBox="0 0 16 16"
-                  >
-                    <path
-                      fill-rule="evenodd"
-                      d="M6 8a.5.5 0 0 0 .5.5h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L12.293 7.5H6.5A.5.5 0 0 0 6 8zm-2.5 7a.5.5 0 0 1-.5-.5v-13a.5.5 0 0 1 1 0v13a.5.5 0 0 1-.5.5z"
-                    />
-                  </svg>
-                </button>
-              </div>
+            <h3>What`s your name?</h3>
+            <p>Please enter your first and last name</p>
+            <div class="col-md-4">
+              <label for="firstName" class="form-label">First name</label>
+              <input
+                type="text"
+                class="form-control"
+                id="firstName"
+                value=""
+                name="firstName"
+                maxlength="20"
+                oninput="this.value = this.value.replace(/[^a-zа-яё\s-]/gi, '');"
+                required
+              />
+              <div class="invalid-feedback">Incorrect name</div>
+              <div class="valid-feedback">Looks good!</div>
             </div>
+            <div class="col-md-4">
+              <label for="lastName" class="form-label">Last name</label>
+              <input
+                type="text"
+                class="form-control"
+                id="lastName"
+                value=""
+                name="lastName"
+                maxlength="20"
+                oninput="this.value = this.value.replace(/[^a-zа-яё\s]/gi, '');"
+                required
+              />
+              <div class="invalid-feedback">Incorrect last name</div>
+              <div class="valid-feedback">Looks good!</div>
+            </div>
+            <div class="col-12 text-center my-3">
+              <button class="btn btn-info" id="goStep2">
+                go next
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="17"
+                  height="17"
+                  fill="currentColor"
+                  class="bi bi-arrow-bar-right"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M6 8a.5.5 0 0 0 .5.5h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L12.293 7.5H6.5A.5.5 0 0 0 6 8zm-2.5 7a.5.5 0 0 1-.5-.5v-13a.5.5 0 0 1 1 0v13a.5.5 0 0 1-.5.5z"
+                  />
+                </svg>
+              </button>
+            </div>
+          </div>
 
-            <!-- Step 2 -->
-            <div id="step2" class="shadow rounded row my-3 py-3 d-none">
-              <h3>Enter your date of birth</h3>
-              <p>Later you can hide it in your profile settings</p>
-              <div class="col-md-4">
-                <input
-                  type="date"
-                  class="form-control"
-                  name="dateOfBirth"
-                  id="dateOfBirth"
-                />
-                <div class="invalid-feedback">Incorrect date of birth</div>
-                <div class="valid-feedback">Looks good!</div>
-              </div>
-              <div class="col-12 text-center my-3">
-                <button class="btn btn-warning">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="17"
-                    height="17"
-                    fill="currentColor"
-                    class="bi bi-arrow-bar-left"
-                    viewBox="0 0 16 16"
-                  >
-                    <path
-                      fill-rule="evenodd"
-                      d="M12.5 15a.5.5 0 0 1-.5-.5v-13a.5.5 0 0 1 1 0v13a.5.5 0 0 1-.5.5zM10 8a.5.5 0 0 1-.5.5H3.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L3.707 7.5H9.5a.5.5 0 0 1 .5.5z"
-                    />
-                  </svg>
-                  go prev
-                </button>
-                <button class="btn btn-info" id="goStep3">
-                  go next
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="17"
-                    height="17"
-                    fill="currentColor"
-                    class="bi bi-arrow-bar-right"
-                    viewBox="0 0 16 16"
-                  >
-                    <path
-                      fill-rule="evenodd"
-                      d="M6 8a.5.5 0 0 0 .5.5h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L12.293 7.5H6.5A.5.5 0 0 0 6 8zm-2.5 7a.5.5 0 0 1-.5-.5v-13a.5.5 0 0 1 1 0v13a.5.5 0 0 1-.5.5z"
-                    />
-                  </svg>
-                </button>
-              </div>
+          <!-- Step 2 -->
+          <div
+            id="step2"
+            class="shadow rounded justify-content-center row my-3 py-3 d-none"
+          >
+            <h3>Enter your date of birth</h3>
+            <p>Later you can hide it in your profile settings</p>
+            <div class="col-md-4">
+              <input
+                type="date"
+                class="form-control"
+                name="dateOfBirth"
+                id="dateOfBirth"
+              />
+              <div class="invalid-feedback">Incorrect date of birth</div>
+              <div class="valid-feedback">Looks good!</div>
             </div>
+            <div class="col-12 text-center my-3">
+              <button class="btn btn-warning">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="17"
+                  height="17"
+                  fill="currentColor"
+                  class="bi bi-arrow-bar-left"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M12.5 15a.5.5 0 0 1-.5-.5v-13a.5.5 0 0 1 1 0v13a.5.5 0 0 1-.5.5zM10 8a.5.5 0 0 1-.5.5H3.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L3.707 7.5H9.5a.5.5 0 0 1 .5.5z"
+                  />
+                </svg>
+                go prev
+              </button>
+              <button class="btn btn-info" id="goStep3">
+                go next
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="17"
+                  height="17"
+                  fill="currentColor"
+                  class="bi bi-arrow-bar-right"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M6 8a.5.5 0 0 0 .5.5h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L12.293 7.5H6.5A.5.5 0 0 0 6 8zm-2.5 7a.5.5 0 0 1-.5-.5v-13a.5.5 0 0 1 1 0v13a.5.5 0 0 1-.5.5z"
+                  />
+                </svg>
+              </button>
+            </div>
+          </div>
 
-            <!-- Step 3 -->
-            <div id="step3" class="shadow rounded row my-3 py-3 d-none">
-              <h3>Enter your email</h3>
-              <p>
-                Enter your email to receive the most interesting news and
-                offers.
-              </p>
-              <div class="col-md-4">
-                <input
-                  type="email"
-                  class="form-control"
-                  name="email"
-                  id="email"
-                  required
-                />
-                <div class="invalid-feedback">Incorrect email</div>
-                <div class="valid-feedback">Looks good!</div>
-              </div>
-              <div class="col-12 text-center my-3">
-                <button class="btn btn-warning">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="17"
-                    height="17"
-                    fill="currentColor"
-                    class="bi bi-arrow-bar-left"
-                    viewBox="0 0 16 16"
-                  >
-                    <path
-                      fill-rule="evenodd"
-                      d="M12.5 15a.5.5 0 0 1-.5-.5v-13a.5.5 0 0 1 1 0v13a.5.5 0 0 1-.5.5zM10 8a.5.5 0 0 1-.5.5H3.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L3.707 7.5H9.5a.5.5 0 0 1 .5.5z"
-                    />
-                  </svg>
-                  go prev
-                </button>
-                <button class="btn btn-info" id="goStep4">
-                  go next
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="17"
-                    height="17"
-                    fill="currentColor"
-                    class="bi bi-arrow-bar-right"
-                    viewBox="0 0 16 16"
-                  >
-                    <path
-                      fill-rule="evenodd"
-                      d="M6 8a.5.5 0 0 0 .5.5h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L12.293 7.5H6.5A.5.5 0 0 0 6 8zm-2.5 7a.5.5 0 0 1-.5-.5v-13a.5.5 0 0 1 1 0v13a.5.5 0 0 1-.5.5z"
-                    />
-                  </svg>
-                </button>
-              </div>
+          <!-- Step 3 -->
+          <div
+            id="step3"
+            class="shadow rounded justify-content-center row my-3 py-3 d-none"
+          >
+            <h3>Enter your email</h3>
+            <p>
+              Enter your email to receive the most interesting news and offers.
+            </p>
+            <div class="col-md-4">
+              <input
+                type="email"
+                class="form-control"
+                name="email"
+                id="email"
+                required
+              />
+              <div class="invalid-feedback">Incorrect email</div>
+              <div class="valid-feedback">Looks good!</div>
             </div>
+            <div class="col-12 text-center my-3">
+              <button class="btn btn-warning">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="17"
+                  height="17"
+                  fill="currentColor"
+                  class="bi bi-arrow-bar-left"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M12.5 15a.5.5 0 0 1-.5-.5v-13a.5.5 0 0 1 1 0v13a.5.5 0 0 1-.5.5zM10 8a.5.5 0 0 1-.5.5H3.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L3.707 7.5H9.5a.5.5 0 0 1 .5.5z"
+                  />
+                </svg>
+                go prev
+              </button>
+              <button class="btn btn-info" id="goStep4">
+                go next
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="17"
+                  height="17"
+                  fill="currentColor"
+                  class="bi bi-arrow-bar-right"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M6 8a.5.5 0 0 0 .5.5h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L12.293 7.5H6.5A.5.5 0 0 0 6 8zm-2.5 7a.5.5 0 0 1-.5-.5v-13a.5.5 0 0 1 1 0v13a.5.5 0 0 1-.5.5z"
+                  />
+                </svg>
+              </button>
+            </div>
+          </div>
 
-            <!-- Step 4 -->
-            <div id="step4" class="shadow rounded row my-3 py-3 d-none">
-              <h3>Enter your phone number</h3>
-              <p>Enter a phone number where you can be contacted.</p>
-              <div class="col-md-4">
-                <input
-                  type="tel"
-                  class="form-control"
-                  name="phoneNumber"
-                  id="phone"
-                  maxlength="20"
-                  oninput="this.value = this.value.replace(/[^0-9,^+]/g, '')"
-                  required
-                />
-                <div class="invalid-feedback">Incorrect phone number</div>
-                <div class="valid-feedback">Looks good!</div>
-              </div>
-              <div class="col-12 text-center my-3">
-                <button class="btn btn-warning">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="17"
-                    height="17"
-                    fill="currentColor"
-                    class="bi bi-arrow-bar-left"
-                    viewBox="0 0 16 16"
-                  >
-                    <path
-                      fill-rule="evenodd"
-                      d="M12.5 15a.5.5 0 0 1-.5-.5v-13a.5.5 0 0 1 1 0v13a.5.5 0 0 1-.5.5zM10 8a.5.5 0 0 1-.5.5H3.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L3.707 7.5H9.5a.5.5 0 0 1 .5.5z"
-                    />
-                  </svg>
-                  go prev
-                </button>
-                <button class="btn btn-info" id="goStep5">
-                  go next
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="17"
-                    height="17"
-                    fill="currentColor"
-                    class="bi bi-arrow-bar-right"
-                    viewBox="0 0 16 16"
-                  >
-                    <path
-                      fill-rule="evenodd"
-                      d="M6 8a.5.5 0 0 0 .5.5h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L12.293 7.5H6.5A.5.5 0 0 0 6 8zm-2.5 7a.5.5 0 0 1-.5-.5v-13a.5.5 0 0 1 1 0v13a.5.5 0 0 1-.5.5z"
-                    />
-                  </svg>
-                </button>
-              </div>
+          <!-- Step 4 -->
+          <div
+            id="step4"
+            class="shadow rounded justify-content-center row my-3 py-3 d-none"
+          >
+            <h3>Enter your phone number</h3>
+            <p>Enter a phone number where you can be contacted.</p>
+            <div class="col-md-4">
+              <input
+                type="tel"
+                class="form-control"
+                name="phoneNumber"
+                id="phone"
+                maxlength="20"
+                oninput="this.value = this.value.replace(/[^0-9,^+]/g, '')"
+                required
+              />
+              <div class="invalid-feedback">Incorrect phone number</div>
+              <div class="valid-feedback">Looks good!</div>
             </div>
+            <div class="col-12 text-center my-3">
+              <button class="btn btn-warning">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="17"
+                  height="17"
+                  fill="currentColor"
+                  class="bi bi-arrow-bar-left"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M12.5 15a.5.5 0 0 1-.5-.5v-13a.5.5 0 0 1 1 0v13a.5.5 0 0 1-.5.5zM10 8a.5.5 0 0 1-.5.5H3.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L3.707 7.5H9.5a.5.5 0 0 1 .5.5z"
+                  />
+                </svg>
+                go prev
+              </button>
+              <button class="btn btn-info" id="goStep5">
+                go next
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="17"
+                  height="17"
+                  fill="currentColor"
+                  class="bi bi-arrow-bar-right"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M6 8a.5.5 0 0 0 .5.5h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L12.293 7.5H6.5A.5.5 0 0 0 6 8zm-2.5 7a.5.5 0 0 1-.5-.5v-13a.5.5 0 0 1 1 0v13a.5.5 0 0 1-.5.5z"
+                  />
+                </svg>
+              </button>
+            </div>
+          </div>
 
-            <!-- Step 5 -->
-            <div id="step5" class="shadow rounded row my-3 py-3 d-none">
-              <h3>Enter your gender</h3>
-              <p>
-                Please indicate your gender so that we can contact you correctly
-              </p>
-              <div class="col-md-4">
-                <input
-                  type="radio"
-                  name="gender"
-                  id="gender1"
-                  value="male"
-                  checked
-                />
-                <label for="gender1" class="mx-1">Male</label>
-                <input type="radio" name="gender" id="gender2" value="female" />
-                <label for="gender2" class="mx-1">Female</label>
-                <input type="radio" name="gender" id="gender3" value="other" />
-                <label for="gender3" class="mx-1">Other</label>
-                <div class="invalid-feedback">Gender not selected</div>
-                <div class="valid-feedback">Looks good!</div>
-              </div>
-              <div class="col-12 text-center my-3">
-                <button class="btn btn-warning">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="17"
-                    height="17"
-                    fill="currentColor"
-                    class="bi bi-arrow-bar-left"
-                    viewBox="0 0 16 16"
-                  >
-                    <path
-                      fill-rule="evenodd"
-                      d="M12.5 15a.5.5 0 0 1-.5-.5v-13a.5.5 0 0 1 1 0v13a.5.5 0 0 1-.5.5zM10 8a.5.5 0 0 1-.5.5H3.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L3.707 7.5H9.5a.5.5 0 0 1 .5.5z"
-                    />
-                  </svg>
-                  go prev
-                </button>
-                <button class="btn btn-info" id="goStep6">
-                  go next
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="17"
-                    height="17"
-                    fill="currentColor"
-                    class="bi bi-arrow-bar-right"
-                    viewBox="0 0 16 16"
-                  >
-                    <path
-                      fill-rule="evenodd"
-                      d="M6 8a.5.5 0 0 0 .5.5h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L12.293 7.5H6.5A.5.5 0 0 0 6 8zm-2.5 7a.5.5 0 0 1-.5-.5v-13a.5.5 0 0 1 1 0v13a.5.5 0 0 1-.5.5z"
-                    />
-                  </svg>
-                </button>
-              </div>
+          <!-- Step 5 -->
+          <div
+            id="step5"
+            class="shadow rounded justify-content-center row my-3 py-3 d-none"
+          >
+            <h3>Enter your gender</h3>
+            <p>
+              Please indicate your gender so that we can contact you correctly
+            </p>
+            <div class="col-md-4">
+              <input
+                type="radio"
+                name="gender"
+                id="gender1"
+                value="male"
+                checked
+              />
+              <label for="gender1" class="mx-1">Male</label>
+              <input type="radio" name="gender" id="gender2" value="female" />
+              <label for="gender2" class="mx-1">Female</label>
+              <input type="radio" name="gender" id="gender3" value="other" />
+              <label for="gender3" class="mx-1">Other</label>
+              <div class="invalid-feedback">Gender not selected</div>
+              <div class="valid-feedback">Looks good!</div>
             </div>
+            <div class="col-12 text-center my-3">
+              <button class="btn btn-warning">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="17"
+                  height="17"
+                  fill="currentColor"
+                  class="bi bi-arrow-bar-left"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M12.5 15a.5.5 0 0 1-.5-.5v-13a.5.5 0 0 1 1 0v13a.5.5 0 0 1-.5.5zM10 8a.5.5 0 0 1-.5.5H3.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L3.707 7.5H9.5a.5.5 0 0 1 .5.5z"
+                  />
+                </svg>
+                go prev
+              </button>
+              <button class="btn btn-info" id="goStep6">
+                go next
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="17"
+                  height="17"
+                  fill="currentColor"
+                  class="bi bi-arrow-bar-right"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M6 8a.5.5 0 0 0 .5.5h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L12.293 7.5H6.5A.5.5 0 0 0 6 8zm-2.5 7a.5.5 0 0 1-.5-.5v-13a.5.5 0 0 1 1 0v13a.5.5 0 0 1-.5.5z"
+                  />
+                </svg>
+              </button>
+            </div>
+          </div>
 
-            <!-- Step 6 -->
-            <div id="step6" class="shadow rounded row my-3 py-3 d-none">
-              <h3>Create a password</h3>
-              <p>
-                Create a new password with at least 6 characters. Use a password
-                that cannot be guessed.
-              </p>
-              <div class="col-md-4">
-                <input
-                  type="password"
-                  class="form-control"
-                  name="password"
-                  id="password"
-                  required
-                />
-                <div class="invalid-feedback">
-                  Password must be longer than 6 characters
-                </div>
-                <div class="valid-feedback">Looks good!</div>
+          <!-- Step 6 -->
+          <div
+            id="step6"
+            class="shadow rounded justify-content-center row my-3 py-3 d-none"
+          >
+            <h3>Create a password</h3>
+            <p>
+              Create a new password with at least 6 characters. Use a password
+              that cannot be guessed.
+            </p>
+            <div class="col-md-4">
+              <input
+                type="password"
+                class="form-control"
+                name="password"
+                id="password"
+                required
+              />
+              <div class="invalid-feedback">
+                Password must be longer than 6 characters
               </div>
-              <p class="my-3">Please repeat your password</p>
-              <div class="col-md-4">
-                <input
-                  type="password"
-                  class="form-control"
-                  name="repeatPassword"
-                  id="repeatPassword"
-                  required
-                />
-                <div class="invalid-feedback">Passwords do not match</div>
-                <div class="valid-feedback">Looks good!</div>
-              </div>
-              <div class="col-12 text-center my-3">
-                <button class="btn btn-success" type="submit">Register</button>
-              </div>
+              <div class="valid-feedback">Looks good!</div>
             </div>
-          </form>
-        </div>
+            <p class="my-3">Please repeat your password</p>
+            <div class="col-md-4">
+              <input
+                type="password"
+                class="form-control"
+                name="repeatPassword"
+                id="repeatPassword"
+                required
+              />
+              <div class="invalid-feedback">Passwords do not match</div>
+              <div class="valid-feedback">Looks good!</div>
+            </div>
+            <div class="col-12 text-center my-3">
+              <button class="btn btn-success" type="submit">Register</button>
+            </div>
+          </div>
+        </form>
       </div>
+      <!-- footer -->
+      <footer class="py-3 mt-auto text-center shadow">
+        <span>
+          Made by
+          <a
+            href="https://github.com/VladislavSrtkn"
+            class="text-decoration-none"
+          >
+            Vladislav Sirotkin
+          </a>
+          on
+          <a href="https://getbootstrap.com/" class="text-decoration-none">
+            Bootstrap
+          </a>
+          template.
+        </span>
+      </footer>
     </div>
 
     <script src="./dist/js/index.js"></script>

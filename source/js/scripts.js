@@ -1,7 +1,16 @@
 import intlTelInput from 'intl-tel-input';
 
-const input = document.querySelector('#phone');
-intlTelInput(input, {
+import {
+  checkName,
+  checkDateOfBirth,
+  checkEmail,
+  checkPasswordLength,
+  checkPasswordsMatch,
+} from './validation_functions';
+
+import { User } from './user_data_functions';
+
+intlTelInput(document.querySelector('#phone'), {
   preferredCountries: ['me', 'ca'],
 });
 
@@ -39,16 +48,17 @@ function registrationFormSubmit(event) {
     document.querySelector('#repeatPassword').classList.remove('is-invalid');
   }
 
-  console.log(
+  const user = new User(
     firstName,
     lastName,
     dateOfBirth,
     email,
     phoneNumber,
     gender,
-    password,
-    repeatPassword
+    password
   );
+
+  console.log(user);
 }
 
 document.querySelector('#goStep2').addEventListener('click', goToStep2);
@@ -66,16 +76,6 @@ function goToStep2() {
 
   const step2 = document.querySelector('#step2');
   step2.classList.remove('d-none');
-}
-
-function checkName() {
-  const firstName = document.querySelector('#firstName');
-  const lastName = document.querySelector('#lastName');
-
-  if (firstName.value == '' || lastName.value == '') {
-    return false;
-  }
-  return true;
 }
 
 document.querySelector('#goStep3').addEventListener('click', goToStep3);
@@ -96,17 +96,6 @@ function goToStep3() {
   step3.classList.remove('d-none');
 }
 
-function checkDateOfBirth() {
-  const dateOfBirth = document.querySelector('#dateOfBirth').value;
-  const today = new Date();
-
-  if (today < new Date(dateOfBirth) || !dateOfBirth) {
-    return false;
-  } else {
-    return true;
-  }
-}
-
 document.querySelector('#goStep4').addEventListener('click', goToStep4);
 
 function goToStep4() {
@@ -124,14 +113,6 @@ function goToStep4() {
 
   const step4 = document.querySelector('#step4');
   step4.classList.remove('d-none');
-}
-
-function checkEmail(email) {
-  return String(email)
-    .toLowerCase()
-    .match(
-      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-    );
 }
 
 document.querySelector('#goStep5').addEventListener('click', goToStep5);
@@ -157,18 +138,10 @@ function goToStep6() {
   const step6 = document.querySelector('#step6');
   step6.classList.remove('d-none');
 }
-function checkPasswordLength(password) {
-  if (password.length < 6) {
-    return false;
-  } else {
-    return true;
-  }
-}
 
-function checkPasswordsMatch(password, repeat) {
-  if (password != repeat) {
-    return false;
-  } else {
-    return true;
+document.querySelector('#password').addEventListener('change', () => {
+  const password = document.querySelector('#password');
+  if (checkPasswordLength(password.value)) {
+    password.classList.remove('is-invalid');
   }
-}
+});

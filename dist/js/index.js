@@ -11,9 +11,12 @@
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var intl_tel_input__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! intl-tel-input */ "./node_modules/intl-tel-input/index.js");
 /* harmony import */ var intl_tel_input__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(intl_tel_input__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _validation_functions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./validation_functions */ "./source/js/validation_functions.js");
+/* harmony import */ var _user_data_functions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./user_data_functions */ "./source/js/user_data_functions.js");
 
-var input = document.querySelector('#phone');
-intl_tel_input__WEBPACK_IMPORTED_MODULE_0___default()(input, {
+
+
+intl_tel_input__WEBPACK_IMPORTED_MODULE_0___default()(document.querySelector('#phone'), {
   preferredCountries: ['me', 'ca']
 });
 document.querySelector('#registrationForm').addEventListener('submit', registrationFormSubmit);
@@ -28,45 +31,38 @@ function registrationFormSubmit(event) {
   var gender = formData.get('gender');
   var password = formData.get('password');
   var repeatPassword = formData.get('repeatPassword');
-  if (!checkPasswordLength(password)) {
+  if (!(0,_validation_functions__WEBPACK_IMPORTED_MODULE_1__.checkPasswordLength)(password)) {
     document.querySelector('input[name="password"]').classList.add('is-invalid');
     return;
   } else {
     document.querySelector('#password').classList.remove('is-invalid');
   }
-  if (!checkPasswordsMatch(password, repeatPassword)) {
+  if (!(0,_validation_functions__WEBPACK_IMPORTED_MODULE_1__.checkPasswordsMatch)(password, repeatPassword)) {
     document.querySelector('#repeatPassword').classList.add('is-invalid');
     return;
   } else {
     document.querySelector('#repeatPassword').classList.remove('is-invalid');
   }
-  console.log(firstName, lastName, dateOfBirth, email, phoneNumber, gender, password, repeatPassword);
+  var user = new _user_data_functions__WEBPACK_IMPORTED_MODULE_2__.User(firstName, lastName, dateOfBirth, email, phoneNumber, gender, password);
+  console.log(user);
 }
 document.querySelector('#goStep2').addEventListener('click', goToStep2);
 function goToStep2() {
   event.preventDefault();
   var step1 = document.querySelector('#step1');
   step1.classList.add('was-validated');
-  if (!checkName()) {
+  if (!(0,_validation_functions__WEBPACK_IMPORTED_MODULE_1__.checkName)()) {
     return;
   }
   step1.classList.add('d-none');
   var step2 = document.querySelector('#step2');
   step2.classList.remove('d-none');
 }
-function checkName() {
-  var firstName = document.querySelector('#firstName');
-  var lastName = document.querySelector('#lastName');
-  if (firstName.value == '' || lastName.value == '') {
-    return false;
-  }
-  return true;
-}
 document.querySelector('#goStep3').addEventListener('click', goToStep3);
 function goToStep3() {
   event.preventDefault();
   var dateInput = document.querySelector('#dateOfBirth');
-  if (!checkDateOfBirth()) {
+  if (!(0,_validation_functions__WEBPACK_IMPORTED_MODULE_1__.checkDateOfBirth)()) {
     dateInput.classList.add('is-invalid');
     return false;
   }
@@ -75,30 +71,18 @@ function goToStep3() {
   var step3 = document.querySelector('#step3');
   step3.classList.remove('d-none');
 }
-function checkDateOfBirth() {
-  var dateOfBirth = document.querySelector('#dateOfBirth').value;
-  var today = new Date();
-  if (today < new Date(dateOfBirth) || !dateOfBirth) {
-    return false;
-  } else {
-    return true;
-  }
-}
 document.querySelector('#goStep4').addEventListener('click', goToStep4);
 function goToStep4() {
   event.preventDefault();
   var email = document.querySelector('#email');
   var step3 = document.querySelector('#step3');
-  if (!checkEmail(email.value)) {
+  if (!(0,_validation_functions__WEBPACK_IMPORTED_MODULE_1__.checkEmail)(email.value)) {
     step3.classList.add('was-validated');
     return;
   }
   step3.classList.add('d-none');
   var step4 = document.querySelector('#step4');
   step4.classList.remove('d-none');
-}
-function checkEmail(email) {
-  return String(email).toLowerCase().match(/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
 }
 document.querySelector('#goStep5').addEventListener('click', goToStep5);
 function goToStep5() {
@@ -115,6 +99,78 @@ function goToStep6() {
   step5.classList.add('d-none');
   var step6 = document.querySelector('#step6');
   step6.classList.remove('d-none');
+}
+document.querySelector('#password').addEventListener('change', function () {
+  var password = document.querySelector('#password');
+  if ((0,_validation_functions__WEBPACK_IMPORTED_MODULE_1__.checkPasswordLength)(password.value)) {
+    password.classList.remove('is-invalid');
+  }
+});
+
+/***/ }),
+
+/***/ "./source/js/user_data_functions.js":
+/*!******************************************!*\
+  !*** ./source/js/user_data_functions.js ***!
+  \******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "User": () => (/* binding */ User)
+/* harmony export */ });
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+var User = /*#__PURE__*/_createClass(function User(firstName, lastName, dateOfBirth, email, phoneNumber, gender, password) {
+  _classCallCheck(this, User);
+  this.firstName = firstName;
+  this.lastName = lastName;
+  this.dateOfBirth = dateOfBirth;
+  this.email = email;
+  this.phoneNumber = phoneNumber;
+  this.gender = gender;
+  this.password = password;
+});
+
+/***/ }),
+
+/***/ "./source/js/validation_functions.js":
+/*!*******************************************!*\
+  !*** ./source/js/validation_functions.js ***!
+  \*******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "checkDateOfBirth": () => (/* binding */ checkDateOfBirth),
+/* harmony export */   "checkEmail": () => (/* binding */ checkEmail),
+/* harmony export */   "checkName": () => (/* binding */ checkName),
+/* harmony export */   "checkPasswordLength": () => (/* binding */ checkPasswordLength),
+/* harmony export */   "checkPasswordsMatch": () => (/* binding */ checkPasswordsMatch)
+/* harmony export */ });
+
+function checkName() {
+  var firstName = document.querySelector('#firstName');
+  var lastName = document.querySelector('#lastName');
+  if (firstName.value == '' || lastName.value == '') {
+    return false;
+  }
+  return true;
+}
+function checkDateOfBirth() {
+  var dateOfBirth = document.querySelector('#dateOfBirth').value;
+  var today = new Date();
+  if (today < new Date(dateOfBirth) || !dateOfBirth) {
+    return false;
+  } else {
+    return true;
+  }
+}
+function checkEmail(email) {
+  return String(email).toLowerCase().match(/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
 }
 function checkPasswordLength(password) {
   if (password.length < 6) {
