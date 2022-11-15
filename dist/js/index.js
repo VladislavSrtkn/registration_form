@@ -88,10 +88,27 @@ document.querySelector('#goStep5').addEventListener('click', goToStep5);
 function goToStep5() {
   event.preventDefault();
   var step4 = document.querySelector('#step4');
+  var telNumber = document.querySelector('#phone');
+  if (!(0,_validation_functions__WEBPACK_IMPORTED_MODULE_1__.checkPhoneNumber)(telNumber.value)) {
+    telNumber.classList.add('is-invalid');
+    document.querySelector('#phoneError').classList.add('direct-display');
+    return;
+  }
+  document.querySelector('#phoneError').classList.remove('direct-display');
   step4.classList.add('d-none');
   var step5 = document.querySelector('#step5');
   step5.classList.remove('d-none');
 }
+document.querySelector('#phone').addEventListener('input', function () {
+  var phoneNumber = document.querySelector('#phone');
+  if (!(0,_validation_functions__WEBPACK_IMPORTED_MODULE_1__.checkPhoneNumber)(phoneNumber.value)) {
+    return;
+  } else {
+    phoneNumber.classList.remove('is-invalid');
+    phoneNumber.classList.add('is-valid');
+    document.querySelector('#phoneError').classList.remove('direct-display');
+  }
+});
 document.querySelector('#goStep6').addEventListener('click', goToStep6);
 function goToStep6() {
   event.preventDefault();
@@ -149,7 +166,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "checkEmail": () => (/* binding */ checkEmail),
 /* harmony export */   "checkName": () => (/* binding */ checkName),
 /* harmony export */   "checkPasswordLength": () => (/* binding */ checkPasswordLength),
-/* harmony export */   "checkPasswordsMatch": () => (/* binding */ checkPasswordsMatch)
+/* harmony export */   "checkPasswordsMatch": () => (/* binding */ checkPasswordsMatch),
+/* harmony export */   "checkPhoneNumber": () => (/* binding */ checkPhoneNumber)
 /* harmony export */ });
 
 function checkName() {
@@ -171,6 +189,13 @@ function checkDateOfBirth() {
 }
 function checkEmail(email) {
   return String(email).toLowerCase().match(/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
+}
+function checkPhoneNumber(number) {
+  if (number.length < 6) {
+    return false;
+  } else {
+    return true;
+  }
 }
 function checkPasswordLength(password) {
   if (password.length < 6) {

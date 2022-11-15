@@ -4,6 +4,7 @@ import {
   checkName,
   checkDateOfBirth,
   checkEmail,
+  checkPhoneNumber,
   checkPasswordLength,
   checkPasswordsMatch,
 } from './validation_functions';
@@ -121,11 +122,33 @@ function goToStep5() {
   event.preventDefault();
 
   const step4 = document.querySelector('#step4');
+
+  const telNumber = document.querySelector('#phone');
+
+  if (!checkPhoneNumber(telNumber.value)) {
+    telNumber.classList.add('is-invalid');
+    document.querySelector('#phoneError').classList.add('direct-display');
+    return;
+  }
+
+  document.querySelector('#phoneError').classList.remove('direct-display');
+
   step4.classList.add('d-none');
 
   const step5 = document.querySelector('#step5');
   step5.classList.remove('d-none');
 }
+
+document.querySelector('#phone').addEventListener('input', () => {
+  const phoneNumber = document.querySelector('#phone');
+  if (!checkPhoneNumber(phoneNumber.value)) {
+    return;
+  } else {
+    phoneNumber.classList.remove('is-invalid');
+    phoneNumber.classList.add('is-valid');
+    document.querySelector('#phoneError').classList.remove('direct-display');
+  }
+});
 
 document.querySelector('#goStep6').addEventListener('click', goToStep6);
 

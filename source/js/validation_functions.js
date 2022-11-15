@@ -2,6 +2,7 @@ export {
   checkName,
   checkDateOfBirth,
   checkEmail,
+  checkPhoneNumber,
   checkPasswordLength,
   checkPasswordsMatch,
 };
@@ -33,6 +34,14 @@ function checkEmail(email) {
     .match(
       /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
     );
+}
+
+function checkPhoneNumber(number) {
+  if (number.length < 6) {
+    return false;
+  } else {
+    return true;
+  }
 }
 
 function checkPasswordLength(password) {

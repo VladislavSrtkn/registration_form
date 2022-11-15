@@ -979,3 +979,7 @@ a:hover {
   --bs-btn-hover-border-color: rgb(72, 150, 252);
 }
 
+.direct-display {
+  display: block !important;
+}
+
