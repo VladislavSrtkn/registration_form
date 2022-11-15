@@ -60,6 +60,8 @@ function registrationFormSubmit(event) {
   );
 
   console.log(user);
+
+  showCompletionOfRegistration();
 }
 
 document.querySelector('#goStep2').addEventListener('click', goToStep2);
@@ -232,4 +234,12 @@ function backToStep5() {
 
   const step5 = document.querySelector('#step5');
   step5.classList.remove('d-none');
+}
+
+function showCompletionOfRegistration() {
+  const step6 = document.querySelector('#step6');
+  step6.classList.add('d-none');
+
+  const successContainer = document.querySelector('.success-reg');
+  successContainer.classList.remove('d-none');
 }

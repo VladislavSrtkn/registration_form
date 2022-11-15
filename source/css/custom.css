@@ -46,6 +46,15 @@ a:hover {
   --bs-btn-hover-border-color: rgb(72, 150, 252);
 }
 
+.btn-warning {
+  --bs-btn-color: #fff;
+  --bs-btn-bg: #fdc10d;
+  --bs-btn-border-color: #fdc10d;
+  --bs-btn-hover-color: #fff;
+  --bs-btn-hover-bg: #fcdd2c;
+  --bs-btn-hover-border-color: #fcdd2c;
+}
+
 .direct-display {
   display: block !important;
 }

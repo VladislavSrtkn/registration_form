@@ -45,6 +45,7 @@ function registrationFormSubmit(event) {
   }
   var user = new _user_data_functions__WEBPACK_IMPORTED_MODULE_2__.User(firstName, lastName, dateOfBirth, email, phoneNumber, gender, password);
   console.log(user);
+  showCompletionOfRegistration();
 }
 document.querySelector('#goStep2').addEventListener('click', goToStep2);
 function goToStep2() {
@@ -167,6 +168,12 @@ function backToStep5() {
   step6.classList.add('d-none');
   var step5 = document.querySelector('#step5');
   step5.classList.remove('d-none');
+}
+function showCompletionOfRegistration() {
+  var step6 = document.querySelector('#step6');
+  step6.classList.add('d-none');
+  var successContainer = document.querySelector('.success-reg');
+  successContainer.classList.remove('d-none');
 }
 
 /***/ }),
@@ -8916,6 +8923,8 @@ __webpack_require__.r(__webpack_exports__);
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
 /******/ 	__webpack_require__.O(undefined, ["css/style"], () => (__webpack_require__("./source/js/scripts.js")))
+/******/ 	__webpack_require__.O(undefined, ["css/style"], () => (__webpack_require__("./source/js/validation_functions.js")))
+/******/ 	__webpack_require__.O(undefined, ["css/style"], () => (__webpack_require__("./source/js/user_data_functions.js")))
 /******/ 	__webpack_require__.O(undefined, ["css/style"], () => (__webpack_require__("./node_modules/bootstrap/dist/js/bootstrap.bundle.js")))
 /******/ 	__webpack_require__.O(undefined, ["css/style"], () => (__webpack_require__("./node_modules/bootstrap/dist/css/bootstrap.min.css")))
 /******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["css/style"], () => (__webpack_require__("./source/css/custom.css")))
