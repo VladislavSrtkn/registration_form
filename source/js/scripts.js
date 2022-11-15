@@ -89,6 +89,7 @@ function goToStep3() {
     dateInput.classList.add('is-invalid');
     return false;
   }
+  dateInput.classList.remove('is-invalid');
 
   const step2 = document.querySelector('#step2');
   step2.classList.add('d-none');
@@ -168,3 +169,67 @@ document.querySelector('#password').addEventListener('change', () => {
     password.classList.remove('is-invalid');
   }
 });
+
+document.querySelector('#backToStep1').addEventListener('click', backToStep1);
+
+function backToStep1() {
+  event.preventDefault();
+
+  const step2 = document.querySelector('#step2');
+  step2.classList.add('d-none');
+
+  const step1 = document.querySelector('#step1');
+  step1.classList.remove('d-none');
+  step1.classList.remove('was-validated');
+}
+
+document.querySelector('#backToStep2').addEventListener('click', backToStep2);
+
+function backToStep2() {
+  event.preventDefault();
+
+  const step3 = document.querySelector('#step3');
+  step3.classList.add('d-none');
+
+  const step2 = document.querySelector('#step2');
+  step2.classList.remove('d-none');
+}
+
+document.querySelector('#backToStep3').addEventListener('click', backToStep3);
+
+function backToStep3() {
+  event.preventDefault();
+
+  const step4 = document.querySelector('#step4');
+  step4.classList.add('d-none');
+
+  const step3 = document.querySelector('#step3');
+  step3.classList.remove('d-none');
+  step3.classList.remove('was-validated');
+}
+
+document.querySelector('#backToStep4').addEventListener('click', backToStep4);
+
+function backToStep4() {
+  event.preventDefault();
+
+  const step5 = document.querySelector('#step5');
+  step5.classList.add('d-none');
+
+  const step4 = document.querySelector('#step4');
+  step4.classList.remove('d-none');
+  const phoneNumber = document.querySelector('#phone');
+  phoneNumber.classList.remove('is-valid');
+}
+
+document.querySelector('#backToStep5').addEventListener('click', backToStep5);
+
+function backToStep5() {
+  event.preventDefault();
+
+  const step6 = document.querySelector('#step6');
+  step6.classList.add('d-none');
+
+  const step5 = document.querySelector('#step5');
+  step5.classList.remove('d-none');
+}
