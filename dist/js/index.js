@@ -12,196 +12,59 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var intl_tel_input__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! intl-tel-input */ "./node_modules/intl-tel-input/index.js");
 /* harmony import */ var intl_tel_input__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(intl_tel_input__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _validation_functions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./validation_functions */ "./source/js/validation_functions.js");
-/* harmony import */ var _user_data_functions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./user_data_functions */ "./source/js/user_data_functions.js");
 
 
-
-intl_tel_input__WEBPACK_IMPORTED_MODULE_0___default()(document.querySelector('#phone'), {
+intl_tel_input__WEBPACK_IMPORTED_MODULE_0___default()(document.querySelector('#phoneNumber'), {
   preferredCountries: ['me', 'ca']
 });
-document.querySelector('#registrationForm').addEventListener('submit', registrationFormSubmit);
-function registrationFormSubmit(event) {
+document.querySelectorAll('form').forEach(function (form) {
+  form.addEventListener('submit', goNextStep);
+});
+function goNextStep(event) {
   event.preventDefault();
   var formData = new FormData(event.target);
-  var firstName = formData.get('firstName');
-  var lastName = formData.get('lastName');
-  var dateOfBirth = formData.get('dateOfBirth');
-  var email = formData.get('email');
-  var phoneNumber = formData.get('phoneNumber');
-  var gender = formData.get('gender');
-  var password = formData.get('password');
-  var repeatPassword = formData.get('repeatPassword');
-  if (!(0,_validation_functions__WEBPACK_IMPORTED_MODULE_1__.checkPasswordLength)(password)) {
-    document.querySelector('input[name="password"]').classList.add('is-invalid');
+  var container = event.target.closest('div[data-step]');
+  var containerNumber = container.dataset.step;
+  var errors = _validation_functions__WEBPACK_IMPORTED_MODULE_1__.validation["checkStep".concat(containerNumber)](formData);
+  if (checkForErrors(errors)) {
+    displayErrors(errors);
     return;
-  } else {
-    document.querySelector('#password').classList.remove('is-invalid');
   }
-  if (!(0,_validation_functions__WEBPACK_IMPORTED_MODULE_1__.checkPasswordsMatch)(password, repeatPassword)) {
-    document.querySelector('#repeatPassword').classList.add('is-invalid');
-    return;
-  } else {
-    document.querySelector('#repeatPassword').classList.remove('is-invalid');
-  }
-  var user = new _user_data_functions__WEBPACK_IMPORTED_MODULE_2__.User(firstName, lastName, dateOfBirth, email, phoneNumber, gender, password);
-  console.log(user);
-  showCompletionOfRegistration();
+  changeRegistrationStep(containerNumber, 'forward');
 }
-document.querySelector('#goStep2').addEventListener('click', goToStep2);
-function goToStep2() {
-  event.preventDefault();
-  var step1 = document.querySelector('#step1');
-  step1.classList.add('was-validated');
-  if (!(0,_validation_functions__WEBPACK_IMPORTED_MODULE_1__.checkName)()) {
-    return;
-  }
-  step1.classList.add('d-none');
-  var step2 = document.querySelector('#step2');
-  step2.classList.remove('d-none');
-}
-document.querySelector('#goStep3').addEventListener('click', goToStep3);
-function goToStep3() {
-  event.preventDefault();
-  var dateInput = document.querySelector('#dateOfBirth');
-  if (!(0,_validation_functions__WEBPACK_IMPORTED_MODULE_1__.checkDateOfBirth)()) {
-    dateInput.classList.add('is-invalid');
-    return false;
-  }
-  dateInput.classList.remove('is-invalid');
-  var step2 = document.querySelector('#step2');
-  step2.classList.add('d-none');
-  var step3 = document.querySelector('#step3');
-  step3.classList.remove('d-none');
-}
-document.querySelector('#goStep4').addEventListener('click', goToStep4);
-function goToStep4() {
-  event.preventDefault();
-  var email = document.querySelector('#email');
-  var step3 = document.querySelector('#step3');
-  if (!(0,_validation_functions__WEBPACK_IMPORTED_MODULE_1__.checkEmail)(email.value)) {
-    step3.classList.add('was-validated');
-    return;
-  }
-  step3.classList.add('d-none');
-  var step4 = document.querySelector('#step4');
-  step4.classList.remove('d-none');
-}
-document.querySelector('#goStep5').addEventListener('click', goToStep5);
-function goToStep5() {
-  event.preventDefault();
-  var step4 = document.querySelector('#step4');
-  var telNumber = document.querySelector('#phone');
-  if (!(0,_validation_functions__WEBPACK_IMPORTED_MODULE_1__.checkPhoneNumber)(telNumber.value)) {
-    telNumber.classList.add('is-invalid');
-    document.querySelector('#phoneError').classList.add('direct-display');
-    return;
-  }
-  document.querySelector('#phoneError').classList.remove('direct-display');
-  step4.classList.add('d-none');
-  var step5 = document.querySelector('#step5');
-  step5.classList.remove('d-none');
-}
-document.querySelector('#phone').addEventListener('input', function () {
-  var phoneNumber = document.querySelector('#phone');
-  if (!(0,_validation_functions__WEBPACK_IMPORTED_MODULE_1__.checkPhoneNumber)(phoneNumber.value)) {
-    return;
-  } else {
-    phoneNumber.classList.remove('is-invalid');
-    phoneNumber.classList.add('is-valid');
-    document.querySelector('#phoneError').classList.remove('direct-display');
-  }
+document.querySelectorAll('[data-btn="back"]').forEach(function (button) {
+  return button.addEventListener('click', goPreviousStep);
 });
-document.querySelector('#goStep6').addEventListener('click', goToStep6);
-function goToStep6() {
+function goPreviousStep(event) {
   event.preventDefault();
-  var step5 = document.querySelector('#step5');
-  step5.classList.add('d-none');
-  var step6 = document.querySelector('#step6');
-  step6.classList.remove('d-none');
+  var container = event.target.closest('div[data-step]');
+  var containerNumber = container.dataset.step;
+  changeRegistrationStep(containerNumber, 'back');
 }
-document.querySelector('#password').addEventListener('change', function () {
-  var password = document.querySelector('#password');
-  if ((0,_validation_functions__WEBPACK_IMPORTED_MODULE_1__.checkPasswordLength)(password.value)) {
-    password.classList.remove('is-invalid');
+function changeRegistrationStep(currentStep, direction) {
+  document.querySelector("div[data-step=\"".concat(currentStep, "\"")).classList.add('d-none');
+  var nextStep;
+  if (direction == 'forward') {
+    nextStep = +currentStep + 1;
   }
-});
-document.querySelector('#backToStep1').addEventListener('click', backToStep1);
-function backToStep1() {
-  event.preventDefault();
-  var step2 = document.querySelector('#step2');
-  step2.classList.add('d-none');
-  var step1 = document.querySelector('#step1');
-  step1.classList.remove('d-none');
-  step1.classList.remove('was-validated');
+  if (direction == 'back') {
+    nextStep = +currentStep - 1;
+  }
+  document.querySelector("div[data-step=\"".concat(nextStep, "\"")).classList.remove('d-none');
 }
-document.querySelector('#backToStep2').addEventListener('click', backToStep2);
-function backToStep2() {
-  event.preventDefault();
-  var step3 = document.querySelector('#step3');
-  step3.classList.add('d-none');
-  var step2 = document.querySelector('#step2');
-  step2.classList.remove('d-none');
+function checkForErrors(errorsObj) {
+  for (var error in errorsObj) {
+    return true;
+  }
+  return false;
 }
-document.querySelector('#backToStep3').addEventListener('click', backToStep3);
-function backToStep3() {
-  event.preventDefault();
-  var step4 = document.querySelector('#step4');
-  step4.classList.add('d-none');
-  var step3 = document.querySelector('#step3');
-  step3.classList.remove('d-none');
-  step3.classList.remove('was-validated');
+function displayErrors(errorsObj) {
+  for (var error in errorsObj) {
+    var errorMessage = errorsObj[error];
+    document.querySelector("#".concat(error)).classList.add('is-invalid');
+    document.querySelector("div[data-invalid-feedback=\"".concat(error, "\"")).innerHTML = errorMessage;
+  }
 }
-document.querySelector('#backToStep4').addEventListener('click', backToStep4);
-function backToStep4() {
-  event.preventDefault();
-  var step5 = document.querySelector('#step5');
-  step5.classList.add('d-none');
-  var step4 = document.querySelector('#step4');
-  step4.classList.remove('d-none');
-  var phoneNumber = document.querySelector('#phone');
-  phoneNumber.classList.remove('is-valid');
-}
-document.querySelector('#backToStep5').addEventListener('click', backToStep5);
-function backToStep5() {
-  event.preventDefault();
-  var step6 = document.querySelector('#step6');
-  step6.classList.add('d-none');
-  var step5 = document.querySelector('#step5');
-  step5.classList.remove('d-none');
-}
-function showCompletionOfRegistration() {
-  var step6 = document.querySelector('#step6');
-  step6.classList.add('d-none');
-  var successContainer = document.querySelector('.success-reg');
-  successContainer.classList.remove('d-none');
-}
-
-/***/ }),
-
-/***/ "./source/js/user_data_functions.js":
-/*!******************************************!*\
-  !*** ./source/js/user_data_functions.js ***!
-  \******************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "User": () => (/* binding */ User)
-/* harmony export */ });
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-var User = /*#__PURE__*/_createClass(function User(firstName, lastName, dateOfBirth, email, phoneNumber, gender, password) {
-  _classCallCheck(this, User);
-  this.firstName = firstName;
-  this.lastName = lastName;
-  this.dateOfBirth = dateOfBirth;
-  this.email = email;
-  this.phoneNumber = phoneNumber;
-  this.gender = gender;
-  this.password = password;
-});
 
 /***/ }),
 
@@ -214,55 +77,75 @@ var User = /*#__PURE__*/_createClass(function User(firstName, lastName, dateOfBi
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "checkDateOfBirth": () => (/* binding */ checkDateOfBirth),
-/* harmony export */   "checkEmail": () => (/* binding */ checkEmail),
-/* harmony export */   "checkName": () => (/* binding */ checkName),
-/* harmony export */   "checkPasswordLength": () => (/* binding */ checkPasswordLength),
-/* harmony export */   "checkPasswordsMatch": () => (/* binding */ checkPasswordsMatch),
-/* harmony export */   "checkPhoneNumber": () => (/* binding */ checkPhoneNumber)
+/* harmony export */   "validation": () => (/* binding */ validation)
 /* harmony export */ });
 
-function checkName() {
-  var firstName = document.querySelector('#firstName');
-  var lastName = document.querySelector('#lastName');
-  if (firstName.value == '' || lastName.value == '') {
-    return false;
+var validation = {
+  checkStep1: function checkStep1(formData) {
+    var firstName = formData.get('firstName');
+    var lastName = formData.get('lastName');
+    var errors = {};
+    if (firstName == '') {
+      errors.firstName = 'The field "name" cannot be empty';
+    }
+    if (lastName == '') {
+      errors.lastName = 'The field "last name" cannot be empty';
+    }
+    return errors;
+  },
+  checkStep2: function checkStep2(formData) {
+    var dateOfBirth = formData.get('dateOfBirth');
+    var today = new Date();
+    var errors = {};
+    if (today < new Date(dateOfBirth)) {
+      errors.dateOfBirth = 'Date of birth cannot be later than the current date';
+    }
+    if (!dateOfBirth) {
+      errors.dateOfBirth = 'The field "date of birth" cannot be empty';
+    }
+    return errors;
+  },
+  checkStep3: function checkStep3(formData) {
+    var email = formData.get('email');
+    var errors = {};
+    if (!String(email).toLowerCase().match(/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)) {
+      errors.email = 'Please enter a valid email';
+    }
+    if (!email) {
+      errors.email = 'The field "email" cannot be empty';
+    }
+    return errors;
+  },
+  checkStep4: function checkStep4(formData) {
+    var phoneNumber = formData.get('phoneNumber');
+    var errors = {};
+    if (phoneNumber.length < 6) {
+      errors.phoneNumber = 'Invalid phone number length';
+    }
+    return errors;
+  },
+  checkStep5: function checkStep5(formData) {
+    var gender = formData.get('gender');
+    var errors = {};
+    if (!gender) {
+      errors.gender = 'Please select your gender';
+    }
+    return errors;
+  },
+  checkStep6: function checkStep6(formData) {
+    var password = formData.get('password');
+    var repeatPassword = formData.get('repeatPassword');
+    var errors = {};
+    if (password.length < 6) {
+      errors.password = 'Password cannot be shorter than 6 characters';
+      return errors;
+    }
+    if (repeatPassword != password) {
+      errors.repeatPassword = 'The entered passwords do not match';
+    }
+    return errors;
   }
-  return true;
-}
-function checkDateOfBirth() {
-  var dateOfBirth = document.querySelector('#dateOfBirth').value;
-  var today = new Date();
-  if (today < new Date(dateOfBirth) || !dateOfBirth) {
-    return false;
-  } else {
-    return true;
-  }
-}
-function checkEmail(email) {
-  return String(email).toLowerCase().match(/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
-}
-function checkPhoneNumber(number) {
-  if (number.length < 6) {
-    return false;
-  } else {
-    return true;
-  }
-}
-function checkPasswordLength(password) {
-  if (password.length < 6) {
-    return false;
-  } else {
-    return true;
-  }
-}
-function checkPasswordsMatch(password, repeat) {
-  if (password != repeat) {
-    return false;
-  } else {
-    return true;
-  }
-}
+};
 
 /***/ }),
 
@@ -8924,7 +8807,6 @@ __webpack_require__.r(__webpack_exports__);
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
 /******/ 	__webpack_require__.O(undefined, ["css/style"], () => (__webpack_require__("./source/js/scripts.js")))
 /******/ 	__webpack_require__.O(undefined, ["css/style"], () => (__webpack_require__("./source/js/validation_functions.js")))
-/******/ 	__webpack_require__.O(undefined, ["css/style"], () => (__webpack_require__("./source/js/user_data_functions.js")))
 /******/ 	__webpack_require__.O(undefined, ["css/style"], () => (__webpack_require__("./node_modules/bootstrap/dist/js/bootstrap.bundle.js")))
 /******/ 	__webpack_require__.O(undefined, ["css/style"], () => (__webpack_require__("./node_modules/bootstrap/dist/css/bootstrap.min.css")))
 /******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["css/style"], () => (__webpack_require__("./source/css/custom.css")))
