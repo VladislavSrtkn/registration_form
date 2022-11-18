@@ -8751,8 +8751,8 @@ __webpack_require__.r(__webpack_exports__);
 /******/ 		// undefined = chunk not loaded, null = chunk preloaded/prefetched
 /******/ 		// [resolve, reject, Promise] = chunk loading, 0 = chunk loaded
 /******/ 		var installedChunks = {
-/******/ 			"/dist/js/index": 0,
-/******/ 			"dist/css/style": 0
+/******/ 			"/js/index": 0,
+/******/ 			"css/style": 0
 /******/ 		};
 /******/ 		
 /******/ 		// no chunk on demand loading
@@ -8802,10 +8802,10 @@ __webpack_require__.r(__webpack_exports__);
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
-/******/ 	__webpack_require__.O(undefined, ["dist/css/style"], () => (__webpack_require__("./source/js/scripts.js")))
-/******/ 	__webpack_require__.O(undefined, ["dist/css/style"], () => (__webpack_require__("./source/js/validation_functions.js")))
-/******/ 	__webpack_require__.O(undefined, ["dist/css/style"], () => (__webpack_require__("./node_modules/bootstrap/dist/js/bootstrap.bundle.js")))
-/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["dist/css/style"], () => (__webpack_require__("./source/css/custom.scss")))
+/******/ 	__webpack_require__.O(undefined, ["css/style"], () => (__webpack_require__("./source/js/scripts.js")))
+/******/ 	__webpack_require__.O(undefined, ["css/style"], () => (__webpack_require__("./source/js/validation_functions.js")))
+/******/ 	__webpack_require__.O(undefined, ["css/style"], () => (__webpack_require__("./node_modules/bootstrap/dist/js/bootstrap.bundle.js")))
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["css/style"], () => (__webpack_require__("./source/css/custom.scss")))
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	
 /******/ })()
