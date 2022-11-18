@@ -19,11 +19,12 @@ function goNextStep(event) {
 
   const errors = validation[`checkStep${containerNumber}`](formData);
 
+  clearValidationErrors();
+
   if (checkForErrors(errors)) {
     displayErrors(errors);
     return;
   }
-  clearValidationErrors();
   changeRegistrationStep(containerNumber, 'forward');
 }
 

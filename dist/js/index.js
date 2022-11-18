@@ -26,11 +26,11 @@ function goNextStep(event) {
   var container = event.target.closest('div[data-step]');
   var containerNumber = container.dataset.step;
   var errors = _validation_functions__WEBPACK_IMPORTED_MODULE_1__.validation["checkStep".concat(containerNumber)](formData);
+  clearValidationErrors();
   if ((0,_validation_functions__WEBPACK_IMPORTED_MODULE_1__.checkForErrors)(errors)) {
     displayErrors(errors);
     return;
   }
-  clearValidationErrors();
   changeRegistrationStep(containerNumber, 'forward');
 }
 document.querySelectorAll('[data-btn="back"]').forEach(function (button) {
@@ -8639,19 +8639,6 @@ __webpack_require__.r(__webpack_exports__);
 // extracted by mini-css-extract-plugin
 
 
-/***/ }),
-
-/***/ "./node_modules/bootstrap/dist/css/bootstrap.min.css":
-/*!***********************************************************!*\
-  !*** ./node_modules/bootstrap/dist/css/bootstrap.min.css ***!
-  \***********************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-// extracted by mini-css-extract-plugin
-
-
 /***/ })
 
 /******/ 	});
@@ -8818,8 +8805,7 @@ __webpack_require__.r(__webpack_exports__);
 /******/ 	__webpack_require__.O(undefined, ["css/style"], () => (__webpack_require__("./source/js/scripts.js")))
 /******/ 	__webpack_require__.O(undefined, ["css/style"], () => (__webpack_require__("./source/js/validation_functions.js")))
 /******/ 	__webpack_require__.O(undefined, ["css/style"], () => (__webpack_require__("./node_modules/bootstrap/dist/js/bootstrap.bundle.js")))
-/******/ 	__webpack_require__.O(undefined, ["css/style"], () => (__webpack_require__("./source/css/custom.sass")))
-/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["css/style"], () => (__webpack_require__("./node_modules/bootstrap/dist/css/bootstrap.min.css")))
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["css/style"], () => (__webpack_require__("./source/css/custom.sass")))
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	
 /******/ })()
