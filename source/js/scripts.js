@@ -2,7 +2,7 @@ import intlTelInput from 'intl-tel-input';
 
 import { validation, checkForErrors } from './validation_functions';
 
-intlTelInput(document.querySelector('#phoneNumber'), {
+intlTelInput(document.querySelector('input[name="phoneNumber"]'), {
   preferredCountries: ['me', 'ca'],
 });
 
@@ -29,7 +29,7 @@ function goNextStep(event) {
 }
 
 document
-  .querySelectorAll('[data-btn="back"]')
+  .querySelectorAll('button[data-btn="back"]')
   .forEach((button) => button.addEventListener('click', goPreviousStep));
 
 function goPreviousStep(event) {
@@ -63,7 +63,10 @@ function displayErrors(errorsObj) {
   for (const error in errorsObj) {
     const errorMessage = errorsObj[error];
 
-    document.querySelector(`#${error}`).classList.add('is-invalid');
+    document
+      .querySelector(`input[name="${error}"]`)
+      .classList.add('is-invalid');
+
     document.querySelector(`div[data-invalid-feedback="${error}"`).innerHTML =
       errorMessage;
   }
