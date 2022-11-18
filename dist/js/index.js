@@ -26,10 +26,11 @@ function goNextStep(event) {
   var container = event.target.closest('div[data-step]');
   var containerNumber = container.dataset.step;
   var errors = _validation_functions__WEBPACK_IMPORTED_MODULE_1__.validation["checkStep".concat(containerNumber)](formData);
-  if (checkForErrors(errors)) {
+  if ((0,_validation_functions__WEBPACK_IMPORTED_MODULE_1__.checkForErrors)(errors)) {
     displayErrors(errors);
     return;
   }
+  clearValidationErrors();
   changeRegistrationStep(containerNumber, 'forward');
 }
 document.querySelectorAll('[data-btn="back"]').forEach(function (button) {
@@ -52,18 +53,20 @@ function changeRegistrationStep(currentStep, direction) {
   }
   document.querySelector("div[data-step=\"".concat(nextStep, "\"")).classList.remove('d-none');
 }
-function checkForErrors(errorsObj) {
-  for (var error in errorsObj) {
-    return true;
-  }
-  return false;
-}
 function displayErrors(errorsObj) {
   for (var error in errorsObj) {
     var errorMessage = errorsObj[error];
     document.querySelector("#".concat(error)).classList.add('is-invalid');
     document.querySelector("div[data-invalid-feedback=\"".concat(error, "\"")).innerHTML = errorMessage;
   }
+}
+function clearValidationErrors() {
+  document.querySelectorAll('.is-invalid').forEach(function (input) {
+    return input.classList.remove('is-invalid');
+  });
+  document.querySelectorAll('.invalid-feedback').forEach(function (container) {
+    return container.innerHTML = '';
+  });
 }
 
 /***/ }),
@@ -77,9 +80,16 @@ function displayErrors(errorsObj) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "checkForErrors": () => (/* binding */ checkForErrors),
 /* harmony export */   "validation": () => (/* binding */ validation)
 /* harmony export */ });
 
+function checkForErrors(errorsObj) {
+  for (var error in errorsObj) {
+    return true;
+  }
+  return false;
+}
 var validation = {
   checkStep1: function checkStep1(formData) {
     var firstName = formData.get('firstName');
@@ -8618,10 +8628,10 @@ module.exports = __webpack_require__(/*! ./build/js/intlTelInput */ "./node_modu
 
 /***/ }),
 
-/***/ "./node_modules/bootstrap/dist/css/bootstrap.min.css":
-/*!***********************************************************!*\
-  !*** ./node_modules/bootstrap/dist/css/bootstrap.min.css ***!
-  \***********************************************************/
+/***/ "./source/css/custom.sass":
+/*!********************************!*\
+  !*** ./source/css/custom.sass ***!
+  \********************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -8631,10 +8641,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./source/css/custom.css":
-/*!*******************************!*\
-  !*** ./source/css/custom.css ***!
-  \*******************************/
+/***/ "./node_modules/bootstrap/dist/css/bootstrap.min.css":
+/*!***********************************************************!*\
+  !*** ./node_modules/bootstrap/dist/css/bootstrap.min.css ***!
+  \***********************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -8808,8 +8818,8 @@ __webpack_require__.r(__webpack_exports__);
 /******/ 	__webpack_require__.O(undefined, ["css/style"], () => (__webpack_require__("./source/js/scripts.js")))
 /******/ 	__webpack_require__.O(undefined, ["css/style"], () => (__webpack_require__("./source/js/validation_functions.js")))
 /******/ 	__webpack_require__.O(undefined, ["css/style"], () => (__webpack_require__("./node_modules/bootstrap/dist/js/bootstrap.bundle.js")))
-/******/ 	__webpack_require__.O(undefined, ["css/style"], () => (__webpack_require__("./node_modules/bootstrap/dist/css/bootstrap.min.css")))
-/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["css/style"], () => (__webpack_require__("./source/css/custom.css")))
+/******/ 	__webpack_require__.O(undefined, ["css/style"], () => (__webpack_require__("./source/css/custom.sass")))
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["css/style"], () => (__webpack_require__("./node_modules/bootstrap/dist/css/bootstrap.min.css")))
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	
 /******/ })()

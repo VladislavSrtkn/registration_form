@@ -1,4 +1,11 @@
-export { validation };
+export { validation, checkForErrors };
+
+function checkForErrors(errorsObj) {
+  for (const error in errorsObj) {
+    return true;
+  }
+  return false;
+}
 
 const validation = {
   checkStep1(formData) {

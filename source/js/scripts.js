@@ -1,6 +1,6 @@
 import intlTelInput from 'intl-tel-input';
 
-import { validation } from './validation_functions';
+import { validation, checkForErrors } from './validation_functions';
 
 intlTelInput(document.querySelector('#phoneNumber'), {
   preferredCountries: ['me', 'ca'],
@@ -23,7 +23,7 @@ function goNextStep(event) {
     displayErrors(errors);
     return;
   }
-
+  clearValidationErrors();
   changeRegistrationStep(containerNumber, 'forward');
 }
 
@@ -58,13 +58,6 @@ function changeRegistrationStep(currentStep, direction) {
     .classList.remove('d-none');
 }
 
-function checkForErrors(errorsObj) {
-  for (const error in errorsObj) {
-    return true;
-  }
-  return false;
-}
-
 function displayErrors(errorsObj) {
   for (const error in errorsObj) {
     const errorMessage = errorsObj[error];
@@ -73,4 +66,14 @@ function displayErrors(errorsObj) {
     document.querySelector(`div[data-invalid-feedback="${error}"`).innerHTML =
       errorMessage;
   }
+}
+
+function clearValidationErrors() {
+  document
+    .querySelectorAll('.is-invalid')
+    .forEach((input) => input.classList.remove('is-invalid'));
+
+  document
+    .querySelectorAll('.invalid-feedback')
+    .forEach((container) => (container.innerHTML = ''));
 }
