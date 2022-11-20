@@ -53,3 +53,18 @@ a:hover {
 .invalid-feedback {
   display: block !important;
 }
+
+.password-box {
+  position: relative;
+}
+
+.bi-eye-fill {
+  position: absolute;
+  right: 0.35rem;
+  top: 0.35rem;
+  color: #b6b6b6;
+
+  :hover {
+    cursor: pointer;
+  }
+}
