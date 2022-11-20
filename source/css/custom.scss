@@ -1,7 +1,7 @@
-$primary: #006eff;
-$secondary: #ffd900;
+$primary: #20252b;
+$secondary: #a6a6a3;
 
-$form-select-bg: #f9d225;
+// $form-select-bg: #f9d225;
 
 @import './node_modules/bootstrap/scss/bootstrap';
 
@@ -22,16 +22,23 @@ $form-select-bg: #f9d225;
 }
 
 body {
-  background-color: rgb(246 246 252);
+  background-color: #3b3b58;
+  color: #c6c7c8;
 }
 
 svg {
   margin-bottom: 0.2rem;
 }
 
-header {
-  background-color: #006eff;
-  color: #fff;
+header,
+footer {
+  background-color: #2e2a32;
+  color: #d2d2d2;
+}
+
+.form-control,
+.form-select {
+  background-color: #c6c6c6;
 }
 
 a {
@@ -62,7 +69,7 @@ a:hover {
   position: absolute;
   right: 0.35rem;
   top: 0.35rem;
-  color: #b6b6b6;
+  color: #3d3b3b;
 
   :hover {
     cursor: pointer;
