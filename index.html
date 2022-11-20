@@ -305,6 +305,83 @@
           class="shadow rounded justify-content-center row my-3 py-3 d-none"
         >
           <form class="row g-3 justify-content-center">
+            <h3>Your interests</h3>
+            <p>Tell us a little about your hobbies</p>
+            <div class="col-md-3">
+              <p>Choose your hobbie</p>
+              <select
+                class="form-select"
+                name="hobbie1"
+                data-chain-of-selects="1"
+              >
+                <option selected>...</option>
+                <option value="Games">Games</option>
+                <option value="Sport">Sport</option>
+                <option value="Cinema">Cinema</option>
+              </select>
+              <div
+                data-invalid-feedback="hobbie1"
+                class="invalid-feedback"
+              ></div>
+            </div>
+            <div class="col-md-3">
+              <p data-chain-of-selects-head="2" class="d-none">
+                A little more detail please
+              </p>
+              <select
+                class="form-select d-none"
+                name="hobbie2"
+                data-chain-of-selects="2"
+              ></select>
+
+              <div
+                data-invalid-feedback="hobbie2"
+                class="invalid-feedback"
+              ></div>
+            </div>
+            <div class="col-12 text-center my-3">
+              <button type="button" class="btn btn-secondary" data-btn="back">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="17"
+                  height="17"
+                  fill="currentColor"
+                  class="bi bi-arrow-bar-left"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M12.5 15a.5.5 0 0 1-.5-.5v-13a.5.5 0 0 1 1 0v13a.5.5 0 0 1-.5.5zM10 8a.5.5 0 0 1-.5.5H3.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L3.707 7.5H9.5a.5.5 0 0 1 .5.5z"
+                  />
+                </svg>
+                go prev
+              </button>
+              <button type="submit" class="btn btn-primary" data-btn="forward">
+                go next
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="17"
+                  height="17"
+                  fill="currentColor"
+                  class="bi bi-arrow-bar-right"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M6 8a.5.5 0 0 0 .5.5h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L12.293 7.5H6.5A.5.5 0 0 0 6 8zm-2.5 7a.5.5 0 0 1-.5-.5v-13a.5.5 0 0 1 1 0v13a.5.5 0 0 1-.5.5z"
+                  />
+                </svg>
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Step 7 -->
+        <div
+          data-step="7"
+          class="shadow rounded justify-content-center row my-3 py-3 d-none"
+        >
+          <form class="row g-3 justify-content-center">
             <h3>Create a password</h3>
             <p>
               Create a new password with at least 6 characters. Use a password
@@ -369,7 +446,7 @@
         </div>
       </div>
       <!-- Success registration -->
-      <div data-step="7" class="d-none">
+      <div data-step="8" class="d-none">
         <h2>
           You have successfully registered
           <svg

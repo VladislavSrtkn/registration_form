@@ -63,9 +63,7 @@ function displayErrors(errorsObj) {
   for (const error in errorsObj) {
     const errorMessage = errorsObj[error];
 
-    document
-      .querySelector(`input[name="${error}"]`)
-      .classList.add('is-invalid');
+    document.querySelector(`[name="${error}"]`).classList.add('is-invalid');
 
     document.querySelector(`div[data-invalid-feedback="${error}"`).innerHTML =
       errorMessage;
@@ -80,4 +78,63 @@ function clearValidationErrors() {
   document
     .querySelectorAll('.invalid-feedback')
     .forEach((container) => (container.innerHTML = ''));
+}
+
+document
+  .querySelectorAll('select')
+  .forEach((elem) => elem.addEventListener('change', showNextSelect));
+
+function showNextSelect(event) {
+  const currentSelectNumber = +event.target.dataset.chainOfSelects;
+  const nextSelectNumber = currentSelectNumber + 1;
+
+  const dependentSelect = document.querySelector(
+    `select[data-chain-of-selects="${nextSelectNumber}"]`
+  );
+
+  if (!dependentSelect) {
+    return;
+  }
+
+  const pickedValue = event.target.value;
+  const valuesArray = getValuesForSelect(pickedValue);
+
+  displayDependentSelect(valuesArray, nextSelectNumber);
+}
+
+function displayDependentSelect(valuesArray, number) {
+  const selectElem = document.querySelector(
+    `select[data-chain-of-selects="${number}"]`
+  );
+  const selectElemHeader = document.querySelector(
+    `[data-chain-of-selects-head="${number}"]`
+  );
+
+  selectElemHeader.classList.remove('d-none');
+
+  selectElem.classList.remove('d-none');
+  selectElem.innerHTML = '';
+
+  for (const value of valuesArray) {
+    const selectOption = document.createElement('option');
+    selectOption.innerHTML = value;
+    selectOption.value = value;
+
+    selectElem.append(selectOption);
+  }
+}
+
+function getValuesForSelect(value) {
+  const selectValues = {
+    '...': [],
+    Sport: ['Football', 'Hockey', 'Basketball', 'Golf', 'Ski'],
+    Games: ['Dota', 'Counter-strike', 'World of Warcraft', 'PUBG'],
+    Cinema: ['Comedy', 'Drama', 'Horror', 'Thriller'],
+  };
+
+  const valuesArray = ['...'];
+
+  valuesArray.push(...selectValues[value]);
+
+  return valuesArray;
 }

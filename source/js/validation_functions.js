@@ -77,6 +77,20 @@ const validation = {
     return errors;
   },
   checkStep6(formData) {
+    const hobbie1 = formData.get('hobbie1');
+    const hobbie2 = formData.get('hobbie2');
+    const errors = {};
+
+    if (hobbie1 == '...') {
+      errors.hobbie1 = 'Please select your hobby from the list';
+    }
+    if (hobbie2 == '...') {
+      errors.hobbie2 = 'Please specify your choice';
+    }
+
+    return errors;
+  },
+  checkStep7(formData) {
     const password = formData.get('password');
     const repeatPassword = formData.get('repeatPassword');
     const errors = {};
