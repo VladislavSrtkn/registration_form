@@ -77,15 +77,18 @@ const validation = {
     return errors;
   },
   checkStep6(formData) {
-    const hobbie1 = formData.get('hobbie1');
-    const hobbie2 = formData.get('hobbie2');
+    const hobby = formData.get('hobby');
+    const hobby2 = formData.get('hobby2');
+    const hobbyOther = formData.get('hobbyOther');
     const errors = {};
 
-    if (hobbie1 == '...') {
-      errors.hobbie1 = 'Please select your hobby from the list';
+    if (hobby == '...') {
+      errors.hobby = 'Please select your hobby from the list';
+      return errors;
     }
-    if (hobbie2 == '...') {
-      errors.hobbie2 = 'Please specify your choice';
+
+    if (!hobbyOther && (hobby2 == '...' || !hobby2)) {
+      errors.hobby2 = 'The field "interests" cannot be empty';
     }
 
     return errors;

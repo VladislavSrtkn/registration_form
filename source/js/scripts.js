@@ -41,9 +41,10 @@ function goPreviousStep(event) {
 }
 
 function changeRegistrationStep(currentStep, direction) {
-  document
-    .querySelector(`div[data-step="${currentStep}"`)
-    .classList.add('d-none');
+  const currentContainer = document.querySelector(
+    `div[data-step="${currentStep}"`
+  );
+  currentContainer.classList.add('d-none');
 
   let nextStep;
 
@@ -54,19 +55,21 @@ function changeRegistrationStep(currentStep, direction) {
     nextStep = +currentStep - 1;
   }
 
-  document
-    .querySelector(`div[data-step="${nextStep}"`)
-    .classList.remove('d-none');
+  const nexContainer = document.querySelector(`div[data-step="${nextStep}"`);
+  nexContainer.classList.remove('d-none');
 }
 
 function displayErrors(errorsObj) {
   for (const error in errorsObj) {
     const errorMessage = errorsObj[error];
 
-    document.querySelector(`[name="${error}"]`).classList.add('is-invalid');
+    const input = document.querySelector(`[name="${error}"]`);
+    input.classList.add('is-invalid');
 
-    document.querySelector(`div[data-invalid-feedback="${error}"`).innerHTML =
-      errorMessage;
+    const feedbackContainer = document.querySelector(
+      `div[data-invalid-feedback="${error}"`
+    );
+    feedbackContainer.innerHTML = errorMessage;
   }
 }
 
@@ -85,8 +88,16 @@ document
   .forEach((elem) => elem.addEventListener('change', showNextSelect));
 
 function showNextSelect(event) {
+  const currentSelectName = event.target.name;
   const currentSelectNumber = +event.target.dataset.chainOfSelects;
   const nextSelectNumber = currentSelectNumber + 1;
+
+  const pickedValue = event.target.value;
+  if (pickedValue == 'Other') {
+    hideElement(`${currentSelectName}${nextSelectNumber}`);
+    displayDependentInput(currentSelectName);
+    return;
+  }
 
   const dependentSelect = document.querySelector(
     `select[data-chain-of-selects="${nextSelectNumber}"]`
@@ -95,19 +106,39 @@ function showNextSelect(event) {
   if (!dependentSelect) {
     return;
   }
+  hideElement(`${currentSelectName}Other`);
 
-  const pickedValue = event.target.value;
   const valuesArray = getValuesForSelect(pickedValue);
 
-  displayDependentSelect(valuesArray, nextSelectNumber);
+  displayDependentSelect(valuesArray, currentSelectName, nextSelectNumber);
 }
 
-function displayDependentSelect(valuesArray, number) {
+function displayDependentInput(name) {
+  const input = document.querySelector(`input[name="${name}Other"]`);
+  const inputHeader = document.querySelector(
+    `[data-chain-of-selects-head="${name}Other"]`
+  );
+
+  inputHeader.classList.remove('d-none');
+  input.classList.remove('d-none');
+}
+
+function hideElement(name) {
+  const elem = document.querySelector(`[name="${name}"]`);
+  const elemHeader = document.querySelector(
+    `[data-chain-of-selects-head="${name}"]`
+  );
+  elem.value = '';
+  elemHeader.classList.add('d-none');
+  elem.classList.add('d-none');
+}
+
+function displayDependentSelect(valuesArray, name, number) {
   const selectElem = document.querySelector(
     `select[data-chain-of-selects="${number}"]`
   );
   const selectElemHeader = document.querySelector(
-    `[data-chain-of-selects-head="${number}"]`
+    `[data-chain-of-selects-head="${name}${number}"]`
   );
 
   selectElemHeader.classList.remove('d-none');
@@ -126,15 +157,19 @@ function displayDependentSelect(valuesArray, number) {
 
 function getValuesForSelect(value) {
   const selectValues = {
-    '...': [],
     Sport: ['Football', 'Hockey', 'Basketball', 'Golf', 'Ski'],
     Games: ['Dota', 'Counter-strike', 'World of Warcraft', 'PUBG'],
     Cinema: ['Comedy', 'Drama', 'Horror', 'Thriller'],
+    Italian: ['Pasta', 'Pizza'],
+    Japanese: ['Sushi', 'Sashimi', 'Rolls'],
+    Canadian: ['Anything with Maple Syrup lol'],
   };
 
   const valuesArray = ['...'];
 
-  valuesArray.push(...selectValues[value]);
+  if (selectValues[value]) {
+    valuesArray.push(...selectValues[value]);
+  }
 
   return valuesArray;
 }

@@ -307,38 +307,47 @@
           <form class="row g-3 justify-content-center">
             <h3>Your interests</h3>
             <p>Tell us a little about your hobbies</p>
-            <div class="col-md-3">
-              <p>Choose your hobbie</p>
+            <div class="col-md-4">
+              <p>Choose your hobby</p>
               <select
                 class="form-select"
-                name="hobbie1"
+                name="hobby"
                 data-chain-of-selects="1"
               >
                 <option selected>...</option>
                 <option value="Games">Games</option>
                 <option value="Sport">Sport</option>
                 <option value="Cinema">Cinema</option>
+                <option value="Other">Other</option>
               </select>
-              <div
-                data-invalid-feedback="hobbie1"
-                class="invalid-feedback"
-              ></div>
+              <div data-invalid-feedback="hobby" class="invalid-feedback"></div>
             </div>
-            <div class="col-md-3">
-              <p data-chain-of-selects-head="2" class="d-none">
+            <div class="col-md-4">
+              <p data-chain-of-selects-head="hobby2" class="d-none">
                 A little more detail please
               </p>
               <select
                 class="form-select d-none"
-                name="hobbie2"
+                name="hobby2"
                 data-chain-of-selects="2"
               ></select>
 
+              <p data-chain-of-selects-head="hobbyOther" class="d-none">
+                Describe in few words
+              </p>
+              <input
+                type="text"
+                class="form-control d-none"
+                name="hobbyOther"
+                placeholder="write here"
+              />
+
               <div
-                data-invalid-feedback="hobbie2"
+                data-invalid-feedback="hobby2"
                 class="invalid-feedback"
               ></div>
             </div>
+
             <div class="col-12 text-center my-3">
               <button type="button" class="btn btn-secondary" data-btn="back">
                 <svg
