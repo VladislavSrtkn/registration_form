@@ -2,6 +2,8 @@ import intlTelInput from 'intl-tel-input';
 
 import { validation, checkForErrors } from './validation_functions';
 
+import { userData, saveUserData, makeOutputForUserData } from './user_data';
+
 intlTelInput(document.querySelector('input[name="phoneNumber"]'), {
   preferredCountries: ['me', 'ca'],
 });
@@ -25,7 +27,16 @@ function goNextStep(event) {
     displayErrors(errors);
     return;
   }
+  saveUserData(formData);
+
   changeRegistrationStep(containerNumber, 'forward');
+
+  const lastStep = document.querySelectorAll('div[data-step]').length - 1;
+
+  if (containerNumber == lastStep) {
+    const userDataOutputObj = makeOutputForUserData(userData);
+    displayUserData(userDataOutputObj);
+  }
 }
 
 document
@@ -160,9 +171,6 @@ function getValuesForSelect(value) {
     Sport: ['Football', 'Hockey', 'Basketball', 'Golf', 'Ski'],
     Games: ['Dota', 'Counter-strike', 'World of Warcraft', 'PUBG'],
     Cinema: ['Comedy', 'Drama', 'Horror', 'Thriller'],
-    Italian: ['Pasta', 'Pizza'],
-    Japanese: ['Sushi', 'Sashimi', 'Rolls'],
-    Canadian: ['Anything with Maple Syrup lol'],
   };
 
   const valuesArray = ['...'];
@@ -187,5 +195,16 @@ function switchPasswordVisibility(event) {
     passwordInput.type = 'text';
   } else {
     passwordInput.type = 'password';
+  }
+}
+
+function displayUserData(userDataOutputObj) {
+  for (const string in userDataOutputObj) {
+    const userData = userDataOutputObj[string];
+    const container = document.createElement('p');
+    container.innerHTML = userData;
+
+    const userInfoContainer = document.querySelector('#userInfoContainer');
+    userInfoContainer.append(container);
   }
 }

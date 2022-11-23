@@ -1,5 +1,3 @@
-export { validation, checkForErrors };
-
 function checkForErrors(errorsObj) {
   for (const error in errorsObj) {
     return true;
@@ -109,3 +107,5 @@ const validation = {
     return errors;
   },
 };
+
+export { validation, checkForErrors };

@@ -1,8 +1,6 @@
 $primary: #20252b;
 $secondary: #a6a6a3;
 
-// $form-select-bg: #f9d225;
-
 @import './node_modules/bootstrap/scss/bootstrap';
 
 @import '/node_modules/intl-tel-input/build/css/intlTelInput.css';
@@ -73,5 +71,20 @@ a:hover {
 
   :hover {
     cursor: pointer;
+  }
+}
+
+#userInfoContainer {
+  p {
+    animation: info 1s forwards;
+  }
+}
+
+@keyframes info {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
   }
 }
