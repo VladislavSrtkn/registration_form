@@ -121,6 +121,16 @@ const validation = {
 
     return errors;
   },
+  checkStep9(formData) {
+    const privacyPolicy = formData.get('privacyPolicy');
+    const errors = {};
+
+    if (!privacyPolicy) {
+      errors.privacyPolicy =
+        'Please confirm your agreement with the privacy policy';
+    }
+    return errors;
+  },
 };
 
 export { validation, checkForErrors };

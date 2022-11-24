@@ -38,7 +38,6 @@ function goNextStep(event) {
   if (containerNumber == lastStep) {
     const userDataOutputObj = makeOutputForUserData(userData);
 
-    // displayUserPicture(userData.userPic);
     displayUserData(userDataOutputObj);
   }
 }
@@ -70,8 +69,8 @@ function changeRegistrationStep(currentStep, direction) {
     nextStep = +currentStep - 1;
   }
 
-  const nexContainer = document.querySelector(`div[data-step="${nextStep}"`);
-  nexContainer.classList.remove('d-none');
+  const nextContainer = document.querySelector(`div[data-step="${nextStep}"`);
+  nextContainer.classList.remove('d-none');
 }
 
 function displayErrors(errorsObj) {

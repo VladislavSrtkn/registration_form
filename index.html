@@ -531,7 +531,100 @@
                 </svg>
                 go prev
               </button>
+              <button type="submit" class="btn btn-primary" data-btn="forward">
+                go next
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="17"
+                  height="17"
+                  fill="currentColor"
+                  class="bi bi-arrow-bar-right"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M6 8a.5.5 0 0 0 .5.5h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L12.293 7.5H6.5A.5.5 0 0 0 6 8zm-2.5 7a.5.5 0 0 1-.5-.5v-13a.5.5 0 0 1 1 0v13a.5.5 0 0 1-.5.5z"
+                  />
+                </svg>
+              </button>
+            </div>
+          </form>
+        </div>
 
+        <!-- Step 9 -->
+        <div
+          data-step="9"
+          class="shadow rounded justify-content-center row my-3 py-3 d-none"
+        >
+          <form class="row g-3 justify-content-center">
+            <h3>Privacy policy</h3>
+            <p>
+              Please confirm that you agree with the privacy policy and choose a
+              convenient option for receiving newsletters
+            </p>
+            <div class="col-md-8">
+              <div class="d-flex py-3">
+                <input
+                  type="checkbox"
+                  name="privacyPolicy"
+                  id="privacyPolicy"
+                  class="mx-3"
+                />
+                <label for="privacyPolicy" class="text-start">
+                  I have read and accept the terms of the
+                  <a href="" onclick="return false">
+                    license agreement and privacy policy
+                  </a>
+                  .
+                </label>
+              </div>
+              <div class="d-flex py-3">
+                <input
+                  type="checkbox"
+                  name="sendingSMS"
+                  id="sendingSMS"
+                  class="mx-3"
+                  checked
+                />
+                <label for="sendingSMS" class="text-start">
+                  I agree to receive SMS notifications
+                </label>
+              </div>
+              <div class="d-flex py-3">
+                <input
+                  type="checkbox"
+                  name="sendingMails"
+                  id="sendingMails"
+                  class="mx-3"
+                  checked
+                />
+                <label for="sendingMails" class="text-start">
+                  I agree to receive email notifications
+                </label>
+              </div>
+
+              <div
+                data-invalid-feedback="privacyPolicy"
+                class="invalid-feedback"
+              ></div>
+            </div>
+            <div class="col-12 text-center my-3">
+              <button type="button" class="btn btn-secondary" data-btn="back">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="17"
+                  height="17"
+                  fill="currentColor"
+                  class="bi bi-arrow-bar-left"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M12.5 15a.5.5 0 0 1-.5-.5v-13a.5.5 0 0 1 1 0v13a.5.5 0 0 1-.5.5zM10 8a.5.5 0 0 1-.5.5H3.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L3.707 7.5H9.5a.5.5 0 0 1 .5.5z"
+                  />
+                </svg>
+                go prev
+              </button>
               <button class="btn btn-success" type="submit" data-btn="forward">
                 Register
                 <svg
@@ -553,34 +646,33 @@
             </div>
           </form>
         </div>
-      </div>
 
-      <!-- Success registration -->
-      <div data-step="9" class="d-none">
-        <h2>
-          You have successfully registered
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="32"
-            height="32"
-            fill="currentColor"
-            class="bi bi-rocket-takeoff-fill"
-            viewBox="0 0 16 16"
-          >
-            <path
-              d="M12.17 9.53c2.307-2.592 3.278-4.684 3.641-6.218.21-.887.214-1.58.16-2.065a3.578 3.578 0 0 0-.108-.563 2.22 2.22 0 0 0-.078-.23V.453c-.073-.164-.168-.234-.352-.295a2.35 2.35 0 0 0-.16-.045 3.797 3.797 0 0 0-.57-.093c-.49-.044-1.19-.03-2.08.188-1.536.374-3.618 1.343-6.161 3.604l-2.4.238h-.006a2.552 2.552 0 0 0-1.524.734L.15 7.17a.512.512 0 0 0 .433.868l1.896-.271c.28-.04.592.013.955.132.232.076.437.16.655.248l.203.083c.196.816.66 1.58 1.275 2.195.613.614 1.376 1.08 2.191 1.277l.082.202c.089.218.173.424.249.657.118.363.172.676.132.956l-.271 1.9a.512.512 0 0 0 .867.433l2.382-2.386c.41-.41.668-.949.732-1.526l.24-2.408Zm.11-3.699c-.797.8-1.93.961-2.528.362-.598-.6-.436-1.733.361-2.532.798-.799 1.93-.96 2.528-.361.599.599.437 1.732-.36 2.531Z"
-            />
-            <path
-              d="M5.205 10.787a7.632 7.632 0 0 0 1.804 1.352c-1.118 1.007-4.929 2.028-5.054 1.903-.126-.127.737-4.189 1.839-5.18.346.69.837 1.35 1.411 1.925Z"
-            />
-          </svg>
-        </h2>
-        <div class="my-5" id="userInfoContainer">
-          <h4 class="py-3 fw-bold">Your account details:</h4>
-          <img id="resultUserPic" src="" class="my-3 user-avatar" />
+        <!-- Success registration -->
+        <div data-step="10" class="d-none">
+          <h2>
+            You have successfully registered
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="32"
+              height="32"
+              fill="currentColor"
+              class="bi bi-rocket-takeoff-fill"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M12.17 9.53c2.307-2.592 3.278-4.684 3.641-6.218.21-.887.214-1.58.16-2.065a3.578 3.578 0 0 0-.108-.563 2.22 2.22 0 0 0-.078-.23V.453c-.073-.164-.168-.234-.352-.295a2.35 2.35 0 0 0-.16-.045 3.797 3.797 0 0 0-.57-.093c-.49-.044-1.19-.03-2.08.188-1.536.374-3.618 1.343-6.161 3.604l-2.4.238h-.006a2.552 2.552 0 0 0-1.524.734L.15 7.17a.512.512 0 0 0 .433.868l1.896-.271c.28-.04.592.013.955.132.232.076.437.16.655.248l.203.083c.196.816.66 1.58 1.275 2.195.613.614 1.376 1.08 2.191 1.277l.082.202c.089.218.173.424.249.657.118.363.172.676.132.956l-.271 1.9a.512.512 0 0 0 .867.433l2.382-2.386c.41-.41.668-.949.732-1.526l.24-2.408Zm.11-3.699c-.797.8-1.93.961-2.528.362-.598-.6-.436-1.733.361-2.532.798-.799 1.93-.96 2.528-.361.599.599.437 1.732-.36 2.531Z"
+              />
+              <path
+                d="M5.205 10.787a7.632 7.632 0 0 0 1.804 1.352c-1.118 1.007-4.929 2.028-5.054 1.903-.126-.127.737-4.189 1.839-5.18.346.69.837 1.35 1.411 1.925Z"
+              />
+            </svg>
+          </h2>
+          <div class="my-5" id="userInfoContainer">
+            <h4 class="py-3 fw-bold">Your account details:</h4>
+            <img id="resultUserPic" src="" class="my-3 user-avatar" />
+          </div>
         </div>
       </div>
-
       <!-- footer -->
       <footer class="py-3 mt-auto text-center shadow">
         <span>
