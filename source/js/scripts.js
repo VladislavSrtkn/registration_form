@@ -20,6 +20,7 @@ function goNextStep(event) {
 
   const container = event.target.closest('div[data-step]');
   const containerNumber = container.dataset.step;
+  const countOfSteps = document.querySelectorAll('div[data-step]').length;
 
   const errors = validation[`checkStep${containerNumber}`](formData);
 
@@ -33,13 +34,22 @@ function goNextStep(event) {
 
   changeRegistrationStep(containerNumber, 'forward');
 
-  const lastStep = document.querySelectorAll('div[data-step]').length - 1;
+  const lastStep = countOfSteps - 1;
 
   if (containerNumber == lastStep) {
     const userDataOutputObj = makeOutputForUserData(userData);
 
     displayUserData(userDataOutputObj);
   }
+}
+
+function changeProgressBar(step) {
+  const progressBar = document.querySelector('.progress-bar');
+  const totalSteps = document.querySelectorAll('div[data-step]').length;
+
+  let progressPercent = (step / totalSteps) * 100;
+
+  progressBar.style.width = `${progressPercent}%`;
 }
 
 document
@@ -68,6 +78,8 @@ function changeRegistrationStep(currentStep, direction) {
   if (direction == 'back') {
     nextStep = +currentStep - 1;
   }
+
+  changeProgressBar(nextStep);
 
   const nextContainer = document.querySelector(`div[data-step="${nextStep}"`);
   nextContainer.classList.remove('d-none');
