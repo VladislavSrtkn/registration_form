@@ -464,6 +464,74 @@
                 </svg>
                 go prev
               </button>
+              <button class="btn btn-primary" data-btn="forward" type="submit">
+                go next
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="17"
+                  height="17"
+                  fill="currentColor"
+                  class="bi bi-arrow-bar-right"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M6 8a.5.5 0 0 0 .5.5h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L12.293 7.5H6.5A.5.5 0 0 0 6 8zm-2.5 7a.5.5 0 0 1-.5-.5v-13a.5.5 0 0 1 1 0v13a.5.5 0 0 1-.5.5z"
+                  />
+                </svg>
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Step 8 -->
+        <div
+          data-step="8"
+          class="shadow rounded justify-content-center row my-3 py-3 d-none"
+        >
+          <form class="row g-3 justify-content-center">
+            <h3>Upload your avatar</h3>
+            <p>Choose a photo to be displayed on your profile</p>
+            <div class="col-md-4">
+              <input
+                class="form-control"
+                type="file"
+                name="userPic"
+                id="userPic"
+              />
+              <input type="checkbox" name="checkCrop" class="d-none" />
+
+              <div id="cropWrapper" class="my-3"></div>
+              <img id="preview" class="user-avatar" src="" />
+
+              <button type="button" class="btn btn-info d-none" id="cropButton">
+                Crop
+              </button>
+
+              <div
+                data-invalid-feedback="userPic"
+                class="invalid-feedback"
+              ></div>
+            </div>
+
+            <div class="col-12 text-center my-3">
+              <button type="button" class="btn btn-secondary" data-btn="back">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="17"
+                  height="17"
+                  fill="currentColor"
+                  class="bi bi-arrow-bar-left"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M12.5 15a.5.5 0 0 1-.5-.5v-13a.5.5 0 0 1 1 0v13a.5.5 0 0 1-.5.5zM10 8a.5.5 0 0 1-.5.5H3.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L3.707 7.5H9.5a.5.5 0 0 1 .5.5z"
+                  />
+                </svg>
+                go prev
+              </button>
+
               <button class="btn btn-success" type="submit" data-btn="forward">
                 Register
                 <svg
@@ -486,8 +554,9 @@
           </form>
         </div>
       </div>
+
       <!-- Success registration -->
-      <div data-step="8" class="d-none">
+      <div data-step="9" class="d-none">
         <h2>
           You have successfully registered
           <svg
@@ -508,6 +577,7 @@
         </h2>
         <div class="my-5" id="userInfoContainer">
           <h4 class="py-3 fw-bold">Your account details:</h4>
+          <img id="resultUserPic" src="" class="my-3 user-avatar" />
         </div>
       </div>
 

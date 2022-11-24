@@ -106,6 +106,21 @@ const validation = {
 
     return errors;
   },
+  checkStep8(formData) {
+    const picture = formData.get('userPic');
+    const preview = formData.get('checkCrop');
+    const errors = {};
+
+    if (picture.name == '') {
+      errors.userPic = 'Please upload your avatar';
+      return errors;
+    }
+    if (preview == null) {
+      errors.userPic = 'Please crop your avatar';
+    }
+
+    return errors;
+  },
 };
 
 export { validation, checkForErrors };

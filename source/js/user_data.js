@@ -19,7 +19,6 @@ function makeOutputForUserData(userDataObj) {
         ? userData.hobby + ', ' + userData.hobby2
         : userDataObj.hobbyOther
     }`,
-    password: `Password: ${userDataObj.password}`,
   };
 
   return userDataOutput;

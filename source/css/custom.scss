@@ -88,3 +88,20 @@ a:hover {
     opacity: 1;
   }
 }
+
+#cropWrapper {
+  img {
+    display: block;
+    max-width: 100%;
+  }
+}
+
+.cropper-view-box,
+.cropper-face {
+  border-radius: 50%;
+}
+
+.user-avatar {
+  width: 90%;
+  max-width: 300px;
+}
