@@ -229,6 +229,7 @@ function cropImage() {
   const resultUserPic = document.querySelector('#resultUserPic');
   const preview = document.querySelector('#preview');
   const cropCheck = document.querySelector('input[name="checkCrop"]');
+  preview.classList.add('d-none');
 
   cropCheck.checked = false;
 
@@ -255,6 +256,7 @@ function cropImage() {
 
     document.querySelector('.cropper-container').classList.add('d-none');
 
+    preview.classList.remove('d-none');
     preview.src = roundedCanvas.toDataURL();
     button.classList.add('d-none');
 
