@@ -115,7 +115,6 @@ a:hover {
 }
 
 input[type='checkbox'] {
-  -webkit-appearance: checkbox;
-  -moz-appearance: checkbox;
-  appearance: checkbox;
+  width: auto;
+  flex: 0 0 16px;
 }
