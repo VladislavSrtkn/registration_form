@@ -1,8 +1,8 @@
 const userData = {};
 
 function saveUserData(formData) {
-  for (const param of formData.entries()) {
-    userData[param[0]] = param[1];
+  for (const [fieldName, value] of formData.entries()) {
+    userData[fieldName] = value;
   }
 }
 

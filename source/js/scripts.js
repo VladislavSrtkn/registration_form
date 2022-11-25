@@ -6,9 +6,18 @@ import { userData, saveUserData, makeOutputForUserData } from './user_data';
 
 import Cropper from 'cropperjs';
 
-intlTelInput(document.querySelector('input[name="phoneNumber"]'), {
-  preferredCountries: ['me', 'ca'],
-});
+// Progress bar
+
+function changeProgressBar(step) {
+  const progressBar = document.querySelector('.progress-bar');
+  const totalSteps = document.querySelectorAll('div[data-step]').length;
+
+  const progressPercent = (step / totalSteps) * 100;
+
+  progressBar.style.width = `${progressPercent}%`;
+}
+
+// Registration step`s changing
 
 document.querySelectorAll('form').forEach((form) => {
   form.addEventListener('submit', goNextStep);
@@ -30,6 +39,7 @@ function goNextStep(event) {
     displayErrors(errors);
     return;
   }
+
   saveUserData(formData);
 
   changeRegistrationStep(containerNumber, 'forward');
@@ -43,15 +53,6 @@ function goNextStep(event) {
   }
 }
 
-function changeProgressBar(step) {
-  const progressBar = document.querySelector('.progress-bar');
-  const totalSteps = document.querySelectorAll('div[data-step]').length;
-
-  let progressPercent = (step / totalSteps) * 100;
-
-  progressBar.style.width = `${progressPercent}%`;
-}
-
 document
   .querySelectorAll('button[data-btn="back"]')
   .forEach((button) => button.addEventListener('click', goPreviousStep));
@@ -60,8 +61,9 @@ function goPreviousStep(event) {
   event.preventDefault();
   const container = event.target.closest('div[data-step]');
   const containerNumber = container.dataset.step;
+  const direction = event.target.dataset.btn;
 
-  changeRegistrationStep(containerNumber, 'back');
+  changeRegistrationStep(containerNumber, direction);
 }
 
 function changeRegistrationStep(currentStep, direction) {
@@ -84,6 +86,8 @@ function changeRegistrationStep(currentStep, direction) {
   const nextContainer = document.querySelector(`div[data-step="${nextStep}"`);
   nextContainer.classList.remove('d-none');
 }
+
+// Errors
 
 function displayErrors(errorsObj) {
   for (const error in errorsObj) {
@@ -109,6 +113,8 @@ function clearValidationErrors() {
     .forEach((container) => (container.innerHTML = ''));
 }
 
+// Selects inputs
+
 document
   .querySelectorAll('select')
   .forEach((elem) => elem.addEventListener('change', showNextSelect));
@@ -126,7 +132,7 @@ function showNextSelect(event) {
   }
 
   const dependentSelect = document.querySelector(
-    `select[data-chain-of-selects="${nextSelectNumber}"]`
+    `select[data-chain-of-selects="${nextSelectNumber}"][name="${currentSelectName}${nextSelectNumber}"]`
   );
 
   if (!dependentSelect) {
@@ -161,7 +167,7 @@ function hideElement(name) {
 
 function displayDependentSelect(valuesArray, name, number) {
   const selectElem = document.querySelector(
-    `select[data-chain-of-selects="${number}"]`
+    `select[data-chain-of-selects="${number}"][name="${name}${number}"]`
   );
   const selectElemHeader = document.querySelector(
     `[data-chain-of-selects-head="${name}${number}"]`
@@ -197,50 +203,47 @@ function getValuesForSelect(value) {
   return valuesArray;
 }
 
-document
-  .querySelectorAll('.password-box > svg')
-  .forEach((item) => item.addEventListener('click', switchPasswordVisibility));
+// Phone input
 
-function switchPasswordVisibility(event) {
-  const target = event.target.closest('svg');
-  const connection = target.dataset.connectTo;
+intlTelInput(document.querySelector('input[name="phoneNumber"]'), {
+  preferredCountries: ['me', 'ca'],
+});
 
-  const passwordInput = document.querySelector(`input[name="${connection}"]`);
-  if (passwordInput.type == 'password') {
-    passwordInput.type = 'text';
-  } else {
-    passwordInput.type = 'password';
-  }
-}
+// User`s picture
 
-document
-  .querySelector('#userPic')
-  .addEventListener('change', setPictureForCrop);
+function getRoundedCanvas(sourceCanvas) {
+  const canvas = document.createElement('canvas');
+  const context = canvas.getContext('2d');
+  const width = sourceCanvas.width;
+  const height = sourceCanvas.height;
 
-function setPictureForCrop(event) {
-  const formData = new FormData(event.target.closest('form'));
-  const link = formData.get('userPic');
-
-  const imageWrapper = document.querySelector('#cropWrapper');
-  imageWrapper.innerHTML = '';
-
-  const previewContainer = document.querySelector('#preview');
-  previewContainer.src = '';
-
-  const image = document.createElement('img');
-  image.src = URL.createObjectURL(link);
-  image.id = 'userPicForCrop';
-  imageWrapper.append(image);
-
-  cropImage();
+  canvas.width = width;
+  canvas.height = height;
+  context.imageSmoothingEnabled = true;
+  context.drawImage(sourceCanvas, 0, 0, width, height);
+  context.globalCompositeOperation = 'destination-in';
+  context.beginPath();
+  context.arc(
+    width / 2,
+    height / 2,
+    Math.min(width, height) / 2,
+    0,
+    2 * Math.PI,
+    true
+  );
+  context.fill();
+  return canvas;
 }
 
 function cropImage() {
   const image = document.querySelector('#userPicForCrop');
   const button = document.querySelector('#cropButton');
-  const resultUserPic = document.querySelector('#resultUserPic');
+
   const preview = document.querySelector('#preview');
+  const resultUserPic = document.querySelector('#resultUserPic');
+
   const cropCheck = document.querySelector('input[name="checkCrop"]');
+
   preview.classList.add('d-none');
 
   cropCheck.checked = false;
@@ -278,29 +281,47 @@ function cropImage() {
   };
 }
 
-function getRoundedCanvas(sourceCanvas) {
-  const canvas = document.createElement('canvas');
-  const context = canvas.getContext('2d');
-  const width = sourceCanvas.width;
-  const height = sourceCanvas.height;
+document
+  .querySelector('#userPic')
+  .addEventListener('change', setPictureForCrop);
 
-  canvas.width = width;
-  canvas.height = height;
-  context.imageSmoothingEnabled = true;
-  context.drawImage(sourceCanvas, 0, 0, width, height);
-  context.globalCompositeOperation = 'destination-in';
-  context.beginPath();
-  context.arc(
-    width / 2,
-    height / 2,
-    Math.min(width, height) / 2,
-    0,
-    2 * Math.PI,
-    true
-  );
-  context.fill();
-  return canvas;
+function setPictureForCrop(event) {
+  const formData = new FormData(event.target.closest('form'));
+  const link = formData.get('userPic');
+
+  const imageWrapper = document.querySelector('#cropWrapper');
+  imageWrapper.innerHTML = '';
+
+  const previewContainer = document.querySelector('#preview');
+  previewContainer.src = '';
+
+  const image = document.createElement('img');
+  image.src = URL.createObjectURL(link);
+  image.id = 'userPicForCrop';
+  imageWrapper.append(image);
+
+  cropImage();
 }
+
+// Password visibility
+
+document
+  .querySelectorAll('.password-box > svg')
+  .forEach((item) => item.addEventListener('click', switchPasswordVisibility));
+
+function switchPasswordVisibility(event) {
+  const target = event.target.closest('svg');
+  const connection = target.dataset.connectTo;
+
+  const passwordInput = document.querySelector(`input[name="${connection}"]`);
+  if (passwordInput.type == 'password') {
+    passwordInput.type = 'text';
+  } else {
+    passwordInput.type = 'password';
+  }
+}
+
+// Display user`s data after registrarion
 
 function displayUserData(userDataOutputObj) {
   for (const string in userDataOutputObj) {
