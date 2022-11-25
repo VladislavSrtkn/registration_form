@@ -37,11 +37,9 @@ const validation = {
   },
   checkStep3(formData) {
     const email = formData.get('email');
-    const regexp = /\w+@{1}\w+[.]\w+/g;
-
     const errors = {};
 
-    if (!email.match(regexp)) {
+    if (!email.match(/\w+@{1}\w+[.]\w+/g)) {
       errors.email = 'Please enter a valid email';
     }
 
