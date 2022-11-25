@@ -39,13 +39,7 @@ const validation = {
     const email = formData.get('email');
     const errors = {};
 
-    if (
-      !String(email)
-        .toLowerCase()
-        .match(
-          /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-        )
-    ) {
+    if (!email.match(/^\w+@{1}\w+[.]\w+$/g)) {
       errors.email = 'Please enter a valid email';
     }
 
