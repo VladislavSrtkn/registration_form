@@ -113,3 +113,9 @@ a:hover {
   transition-property: width;
   transition-duration: 2s;
 }
+
+input[type='checkbox'] {
+  -webkit-appearance: checkbox;
+  -moz-appearance: checkbox;
+  appearance: checkbox;
+}
