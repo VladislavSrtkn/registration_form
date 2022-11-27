@@ -95,6 +95,18 @@ const validation = {
       errors.password = 'Password cannot be shorter than 6 characters';
       return errors;
     }
+    if (
+      !(
+        password.match(/[a-z]/) &&
+        password.match(/[A-Z]/) &&
+        password.match(/\d/) &&
+        password.match(/\p{P}/u)
+      )
+    ) {
+      errors.password =
+        'The password must contain lowercase and uppercase letters, numbers and a special character';
+      return errors;
+    }
     if (repeatPassword != password) {
       errors.repeatPassword = 'The entered passwords do not match';
     }
