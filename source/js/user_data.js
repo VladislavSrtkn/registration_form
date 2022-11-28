@@ -1,3 +1,5 @@
+import format from 'date-fns/format';
+
 const userData = {};
 
 function saveUserData(formData) {
@@ -11,7 +13,10 @@ function makeOutputForUserData(userDataObj) {
     name: `Name: ${userDataObj.firstName}`,
     lastName: `Last name: ${userDataObj.lastName} `,
     gender: `Gender: ${userDataObj.gender}`,
-    dateOfBirth: `Date of birth: ${userDataObj.dateOfBirth}`,
+    dateOfBirth: `Date of birth: ${format(
+      new Date(userDataObj.dateOfBirth),
+      'do MMM y'
+    )}`,
     email: `Email: ${userDataObj.email}`,
     phoneNumber: `Phone: ${userDataObj.phoneNumber}`,
     hobby: `Hobby: ${
