@@ -23,11 +23,16 @@ const validation = {
   checkStep2(formData) {
     const dateOfBirth = formData.get('dateOfBirth');
     const today = new Date();
+    const dateForCheck = new Date().setFullYear(today.getFullYear() - 18);
     const errors = {};
 
     if (today < new Date(dateOfBirth)) {
       errors.dateOfBirth =
         'Date of birth cannot be later than the current date';
+      return errors;
+    }
+    if (dateForCheck < new Date(dateOfBirth)) {
+      errors.dateOfBirth = 'Registration is available only from 18 years old';
     }
     if (!dateOfBirth) {
       errors.dateOfBirth = 'The field "date of birth" cannot be empty';
