@@ -1,5 +1,5 @@
-$primary: #20252b;
-$secondary: #a6a6a3;
+$primary: #0b66c2;
+$secondary: #cdcdcd;
 
 @import './node_modules/bootstrap/scss/bootstrap';
 
@@ -20,23 +20,26 @@ $secondary: #a6a6a3;
 }
 
 body {
-  background-color: #3b3b58;
-  color: #c6c7c8;
+  background-color: rgba(0, 0, 0, 0);
+  color: rgba(0, 0, 0, 0.9);
 }
 
 svg {
   margin-bottom: 0.2rem;
 }
 
-header,
-footer {
-  background-color: #2e2a32;
-  color: #d2d2d2;
+header {
+  background-color: #fff;
+  color: #0b66c2;
 }
 
-.form-control,
-.form-select {
-  background-color: #c6c6c6;
+p {
+  color: rgba(0, 0, 0, 0.6);
+}
+
+footer {
+  background-color: #fff;
+  color: rgba(0, 0, 0, 0.6);
 }
 
 a {
@@ -44,7 +47,7 @@ a {
 }
 
 a:hover {
-  color: rgb(206, 205, 204) !important;
+  color: #0b66c2 !important;
 }
 
 .cover-container {
@@ -67,7 +70,7 @@ a:hover {
   position: absolute;
   right: 0.35rem;
   top: 0.35rem;
-  color: #3d3b3b;
+  color: rgba(0, 0, 0, 0.6);
 
   :hover {
     cursor: pointer;
@@ -108,7 +111,7 @@ a:hover {
 
 .progress-bar {
   height: 0.25rem;
-  background-color: #a6a6a3;
+  background-color: rgba(0, 0, 0, 0.1);
   width: 0;
   transition-property: width;
   transition-duration: 2s;
