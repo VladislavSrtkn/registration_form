@@ -1,10 +1,12 @@
 import intlTelInput from 'intl-tel-input';
 
-import { validation, checkForErrors } from './validation_functions';
+import { getValidationFunction } from './validation_functions';
 
 import { userData, saveUserData, makeOutputForUserData } from './user_data';
 
 import Cropper from 'cropperjs';
+
+import _, { isEmpty } from 'lodash';
 
 // Progress bar
 
@@ -31,11 +33,12 @@ function goNextStep(event) {
   const containerNumber = container.dataset.step;
   const countOfSteps = document.querySelectorAll('div[data-step]').length;
 
-  const errors = validation[`checkStep${containerNumber}`](formData);
+  const validate = getValidationFunction(containerNumber);
+  const errors = validate(formData);
 
   clearValidationErrors();
 
-  if (checkForErrors(errors)) {
+  if (!isEmpty(errors)) {
     displayErrors(errors);
     return;
   }
@@ -67,9 +70,7 @@ function goPreviousStep(event) {
 }
 
 function changeRegistrationStep(currentStep, direction) {
-  const currentContainer = document.querySelector(
-    `div[data-step="${currentStep}"`
-  );
+  const currentContainer = document.querySelector(`div[data-step="${currentStep}"`);
   currentContainer.classList.add('d-none');
 
   let nextStep;
@@ -96,21 +97,15 @@ function displayErrors(errorsObj) {
     const input = document.querySelector(`[name="${error}"]`);
     input.classList.add('is-invalid');
 
-    const feedbackContainer = document.querySelector(
-      `div[data-invalid-feedback="${error}"`
-    );
+    const feedbackContainer = document.querySelector(`div[data-invalid-feedback="${error}"`);
     feedbackContainer.innerHTML = errorMessage;
   }
 }
 
 function clearValidationErrors() {
-  document
-    .querySelectorAll('.is-invalid')
-    .forEach((input) => input.classList.remove('is-invalid'));
+  document.querySelectorAll('.is-invalid').forEach((input) => input.classList.remove('is-invalid'));
 
-  document
-    .querySelectorAll('.invalid-feedback')
-    .forEach((container) => (container.innerHTML = ''));
+  document.querySelectorAll('.invalid-feedback').forEach((container) => (container.innerHTML = ''));
 }
 
 // Selects inputs
@@ -147,9 +142,7 @@ function showNextSelect(event) {
 
 function displayDependentInput(name) {
   const input = document.querySelector(`input[name="${name}Other"]`);
-  const inputHeader = document.querySelector(
-    `[data-chain-of-selects-head="${name}Other"]`
-  );
+  const inputHeader = document.querySelector(`[data-chain-of-selects-head="${name}Other"]`);
 
   inputHeader.classList.remove('d-none');
   input.classList.remove('d-none');
@@ -157,9 +150,7 @@ function displayDependentInput(name) {
 
 function hideElement(name) {
   const elem = document.querySelector(`[name="${name}"]`);
-  const elemHeader = document.querySelector(
-    `[data-chain-of-selects-head="${name}"]`
-  );
+  const elemHeader = document.querySelector(`[data-chain-of-selects-head="${name}"]`);
   elem.value = '';
   elemHeader.classList.add('d-none');
   elem.classList.add('d-none');
@@ -223,14 +214,7 @@ function getRoundedCanvas(sourceCanvas) {
   context.drawImage(sourceCanvas, 0, 0, width, height);
   context.globalCompositeOperation = 'destination-in';
   context.beginPath();
-  context.arc(
-    width / 2,
-    height / 2,
-    Math.min(width, height) / 2,
-    0,
-    2 * Math.PI,
-    true
-  );
+  context.arc(width / 2, height / 2, Math.min(width, height) / 2, 0, 2 * Math.PI, true);
   context.fill();
   return canvas;
 }
@@ -281,9 +265,7 @@ function cropImage() {
   };
 }
 
-document
-  .querySelector('#userPic')
-  .addEventListener('change', setPictureForCrop);
+document.querySelector('#userPic').addEventListener('change', setPictureForCrop);
 
 function setPictureForCrop(event) {
   const formData = new FormData(event.target.closest('form'));

@@ -22,10 +22,7 @@
 
       <div class="py-4 align-self-center col-10">
         <!-- Step 1 -->
-        <div
-          data-step="1"
-          class="shadow rounded justify-content-center row my-3 py-3"
-        >
+        <div data-step="1" class="shadow rounded justify-content-center row my-3 py-3">
           <form class="row g-3 justify-content-center">
             <h3>What`s your name?</h3>
             <p>Please enter your first and last name</p>
@@ -39,10 +36,7 @@
                 maxlength="20"
                 oninput="this.value = this.value.replace(/[^a-zа-яё\s-]/gi, '');"
               />
-              <div
-                data-invalid-feedback="firstName"
-                class="invalid-feedback"
-              ></div>
+              <div data-invalid-feedback="firstName" class="invalid-feedback"></div>
             </div>
             <div class="col-md-4">
               <label for="lastName" class="form-label">Last name</label>
@@ -54,10 +48,7 @@
                 maxlength="20"
                 oninput="this.value = this.value.replace(/[^a-zа-яё\s]/gi, '');"
               />
-              <div
-                data-invalid-feedback="lastName"
-                class="invalid-feedback"
-              ></div>
+              <div data-invalid-feedback="lastName" class="invalid-feedback"></div>
             </div>
             <div class="col-12 text-center my-3">
               <button class="btn btn-primary" data-btn="forward" type="submit">
@@ -81,19 +72,13 @@
         </div>
 
         <!-- Step 2 -->
-        <div
-          data-step="2"
-          class="shadow rounded justify-content-center row my-3 py-3 d-none"
-        >
+        <div data-step="2" class="shadow rounded justify-content-center row my-3 py-3 d-none">
           <form class="row g-3 justify-content-center">
             <h3>Enter your date of birth</h3>
             <p>Later you can hide it in your profile settings</p>
             <div class="col-md-4">
               <input type="date" class="form-control" name="dateOfBirth" />
-              <div
-                data-invalid-feedback="dateOfBirth"
-                class="invalid-feedback"
-              ></div>
+              <div data-invalid-feedback="dateOfBirth" class="invalid-feedback"></div>
             </div>
             <div class="col-12 text-center my-3">
               <button type="button" class="btn btn-secondary" data-btn="back">
@@ -133,15 +118,10 @@
         </div>
 
         <!-- Step 3 -->
-        <div
-          data-step="3"
-          class="shadow rounded justify-content-center row my-3 py-3 d-none"
-        >
+        <div data-step="3" class="shadow rounded justify-content-center row my-3 py-3 d-none">
           <form class="row g-3 justify-content-center" novalidate>
             <h3>Enter your email</h3>
-            <p>
-              Enter your email to receive the most interesting news and offers.
-            </p>
+            <p>Enter your email to receive the most interesting news and offers.</p>
             <div class="col-md-4">
               <input type="email" class="form-control" name="email" />
               <div data-invalid-feedback="email" class="invalid-feedback"></div>
@@ -184,10 +164,7 @@
         </div>
 
         <!-- Step 4 -->
-        <div
-          data-step="4"
-          class="shadow rounded justify-content-center row my-3 py-3 d-none"
-        >
+        <div data-step="4" class="shadow rounded justify-content-center row my-3 py-3 d-none">
           <form class="row g-3 justify-content-center">
             <h3>Enter your phone number</h3>
             <p>Enter a phone number where you can be contacted.</p>
@@ -199,10 +176,7 @@
                 maxlength="20"
                 oninput="this.value = this.value.replace(/[^0-9,^+]/g, '')"
               />
-              <div
-                data-invalid-feedback="phoneNumber"
-                class="invalid-feedback"
-              ></div>
+              <div data-invalid-feedback="phoneNumber" class="invalid-feedback"></div>
             </div>
             <div class="col-12 text-center my-3">
               <button type="button" class="btn btn-secondary" data-btn="back">
@@ -242,15 +216,10 @@
         </div>
 
         <!-- Step 5 -->
-        <div
-          data-step="5"
-          class="shadow rounded justify-content-center row my-3 py-3 d-none"
-        >
+        <div data-step="5" class="shadow rounded justify-content-center row my-3 py-3 d-none">
           <form class="row g-3 justify-content-center">
             <h3>Enter your gender</h3>
-            <p>
-              Please indicate your gender so that we can contact you correctly
-            </p>
+            <p>Please indicate your gender so that we can contact you correctly</p>
             <div class="col-md-4">
               <input type="radio" name="gender" id="gender" value="male" />
               <label for="gender" class="mx-1">Male</label>
@@ -258,10 +227,7 @@
               <label for="gender2" class="mx-1">Female</label>
               <input type="radio" name="gender" id="gender3" value="other" />
               <label for="gender3" class="mx-1">Other</label>
-              <div
-                data-invalid-feedback="gender"
-                class="invalid-feedback"
-              ></div>
+              <div data-invalid-feedback="gender" class="invalid-feedback"></div>
             </div>
             <div class="col-12 text-center my-3">
               <button type="button" class="btn btn-secondary" data-btn="back">
@@ -301,20 +267,13 @@
         </div>
 
         <!-- Step 6 -->
-        <div
-          data-step="6"
-          class="shadow rounded justify-content-center row my-3 py-3 d-none"
-        >
+        <div data-step="6" class="shadow rounded justify-content-center row my-3 py-3 d-none">
           <form class="row g-3 justify-content-center">
             <h3>Your interests</h3>
             <p>Tell us a little about your hobbies</p>
             <div class="col-md-4">
               <p>Choose your hobby</p>
-              <select
-                class="form-select"
-                name="hobby"
-                data-chain-of-selects="1"
-              >
+              <select class="form-select" name="hobby" data-chain-of-selects="1">
                 <option selected>...</option>
                 <option value="Games">Games</option>
                 <option value="Sport">Sport</option>
@@ -324,18 +283,10 @@
               <div data-invalid-feedback="hobby" class="invalid-feedback"></div>
             </div>
             <div class="col-md-4">
-              <p data-chain-of-selects-head="hobby2" class="d-none">
-                A little more detail please
-              </p>
-              <select
-                class="form-select d-none"
-                name="hobby2"
-                data-chain-of-selects="2"
-              ></select>
+              <p data-chain-of-selects-head="hobby2" class="d-none">A little more detail please</p>
+              <select class="form-select d-none" name="hobby2" data-chain-of-selects="2"></select>
 
-              <p data-chain-of-selects-head="hobbyOther" class="d-none">
-                Describe in few words
-              </p>
+              <p data-chain-of-selects-head="hobbyOther" class="d-none">Describe in few words</p>
               <input
                 type="text"
                 class="form-control d-none"
@@ -343,10 +294,7 @@
                 placeholder="write here"
               />
 
-              <div
-                data-invalid-feedback="hobby2"
-                class="invalid-feedback"
-              ></div>
+              <div data-invalid-feedback="hobby2" class="invalid-feedback"></div>
             </div>
 
             <div class="col-12 text-center my-3">
@@ -387,16 +335,12 @@
         </div>
 
         <!-- Step 7 -->
-        <div
-          data-step="7"
-          class="shadow rounded justify-content-center row my-3 py-3 d-none"
-        >
+        <div data-step="7" class="shadow rounded justify-content-center row my-3 py-3 d-none">
           <form class="row g-3 justify-content-center">
             <h3>Create a password</h3>
             <p>
-              Create a new password with at least 6 characters. Use an
-              unguessable password that includes lowercase and uppercase
-              letters, numbers and a special character.
+              Create a new password with at least 6 characters. Use an unguessable password that
+              includes lowercase and uppercase letters, numbers and a special character.
             </p>
             <div class="col-md-4">
               <div class="password-box">
@@ -415,10 +359,7 @@
                   />
                 </svg>
                 <input type="password" class="form-control" name="password" />
-                <div
-                  data-invalid-feedback="password"
-                  class="invalid-feedback"
-                ></div>
+                <div data-invalid-feedback="password" class="invalid-feedback"></div>
               </div>
             </div>
             <p class="my-3">Please repeat your password</p>
@@ -438,15 +379,8 @@
                     d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"
                   />
                 </svg>
-                <input
-                  type="password"
-                  class="form-control"
-                  name="repeatPassword"
-                />
-                <div
-                  data-invalid-feedback="repeatPassword"
-                  class="invalid-feedback"
-                ></div>
+                <input type="password" class="form-control" name="repeatPassword" />
+                <div data-invalid-feedback="repeatPassword" class="invalid-feedback"></div>
               </div>
             </div>
             <div class="col-12 text-center my-3">
@@ -487,37 +421,20 @@
         </div>
 
         <!-- Step 8 -->
-        <div
-          data-step="8"
-          class="shadow rounded justify-content-center row my-3 py-3 d-none"
-        >
+        <div data-step="8" class="shadow rounded justify-content-center row my-3 py-3 d-none">
           <form class="row g-3 justify-content-center">
             <h3>Upload your avatar</h3>
             <p>Choose a photo to be displayed on your profile</p>
             <div class="col-md-4">
-              <input
-                class="form-control"
-                type="file"
-                name="userPic"
-                id="userPic"
-              />
+              <input class="form-control" type="file" name="userPic" id="userPic" />
               <input type="checkbox" name="checkCrop" class="d-none" />
 
               <div id="cropWrapper" class="my-3"></div>
               <img id="preview" class="user-avatar" src="" />
 
-              <button
-                type="button"
-                class="btn btn-success d-none"
-                id="cropButton"
-              >
-                Crop
-              </button>
+              <button type="button" class="btn btn-success d-none" id="cropButton">Crop</button>
 
-              <div
-                data-invalid-feedback="userPic"
-                class="invalid-feedback"
-              ></div>
+              <div data-invalid-feedback="userPic" class="invalid-feedback"></div>
             </div>
 
             <div class="col-12 text-center my-3">
@@ -558,61 +475,36 @@
         </div>
 
         <!-- Step 9 -->
-        <div
-          data-step="9"
-          class="shadow rounded justify-content-center row my-3 py-3 d-none"
-        >
+        <div data-step="9" class="shadow rounded justify-content-center row my-3 py-3 d-none">
           <form class="row g-3 justify-content-center">
             <h3>Privacy policy</h3>
             <p>
-              Please confirm that you agree with the privacy policy and choose a
-              convenient option for receiving newsletters
+              Please confirm that you agree with the privacy policy and choose a convenient option
+              for receiving newsletters
             </p>
             <div class="col-md-8">
               <div class="d-flex py-3">
-                <input
-                  type="checkbox"
-                  name="privacyPolicy"
-                  id="privacyPolicy"
-                  class="mx-3"
-                />
+                <input type="checkbox" name="privacyPolicy" id="privacyPolicy" class="mx-3" />
                 <label for="privacyPolicy" class="text-start">
                   I have read and accept the terms of the
-                  <a href="" onclick="return false">
-                    license agreement and privacy policy
-                  </a>
+                  <a href="" onclick="return false">license agreement and privacy policy</a>
                   .
                 </label>
               </div>
               <div class="d-flex py-3">
-                <input
-                  type="checkbox"
-                  name="sendingSMS"
-                  id="sendingSMS"
-                  class="mx-3"
-                  checked
-                />
+                <input type="checkbox" name="sendingSMS" id="sendingSMS" class="mx-3" checked />
                 <label for="sendingSMS" class="text-start">
                   I agree to receive SMS notifications
                 </label>
               </div>
               <div class="d-flex py-3">
-                <input
-                  type="checkbox"
-                  name="sendingMails"
-                  id="sendingMails"
-                  class="mx-3"
-                  checked
-                />
+                <input type="checkbox" name="sendingMails" id="sendingMails" class="mx-3" checked />
                 <label for="sendingMails" class="text-start">
                   I agree to receive email notifications
                 </label>
               </div>
 
-              <div
-                data-invalid-feedback="privacyPolicy"
-                class="invalid-feedback"
-              ></div>
+              <div data-invalid-feedback="privacyPolicy" class="invalid-feedback"></div>
             </div>
             <div class="col-12 text-center my-3">
               <button type="button" class="btn btn-secondary" data-btn="back">
@@ -641,9 +533,7 @@
                   class="bi bi-check-circle"
                   viewBox="0 0 16 16"
                 >
-                  <path
-                    d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"
-                  />
+                  <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
                   <path
                     d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"
                   />
@@ -666,16 +556,11 @@
       <footer class="py-3 mt-auto text-center shadow">
         <span>
           Made by
-          <a
-            href="https://github.com/VladislavSrtkn"
-            class="text-decoration-none"
-          >
+          <a href="https://github.com/VladislavSrtkn" class="text-decoration-none">
             Vladislav Sirotkin
           </a>
           on
-          <a href="https://getbootstrap.com/" class="text-decoration-none">
-            Bootstrap
-          </a>
+          <a href="https://getbootstrap.com/" class="text-decoration-none">Bootstrap</a>
           template.
         </span>
       </footer>
