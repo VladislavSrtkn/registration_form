@@ -1,11 +1,7 @@
 import intlTelInput from 'intl-tel-input';
-
 import { getValidationFunction } from './validation_functions';
-
 import { userData, saveUserData, makeOutputForUserData } from './user_data';
-
 import Cropper from 'cropperjs';
-
 import _, { isEmpty } from 'lodash';
 
 // Progress bar
@@ -98,7 +94,10 @@ function displayErrors(errorsObj) {
     input.classList.add('is-invalid');
 
     const feedbackContainer = document.querySelector(`div[data-invalid-feedback="${error}"`);
-    feedbackContainer.innerHTML = errorMessage;
+
+    if (feedbackContainer) {
+      feedbackContainer.innerHTML = errorMessage;
+    }
   }
 }
 
@@ -185,7 +184,7 @@ function getValuesForSelect(value) {
     Cinema: ['Comedy', 'Drama', 'Horror', 'Thriller'],
   };
 
-  const valuesArray = ['...'];
+  const valuesArray = [''];
 
   if (selectValues[value]) {
     valuesArray.push(...selectValues[value]);

@@ -1,6 +1,8 @@
-import isFuture from 'date-fns/isFuture';
-import differenceInYears from 'date-fns/differenceInYears';
-import parse from 'date-fns/parse';
+import validateRequiredField from './validateRequiredField';
+import validateDateOfBirth from './validateDateOfBirth';
+import validateEmail from './validateEmail';
+import validatePasswords from './validatePasswords';
+import validateAvatar from './validateAvatar';
 
 function getValidationFunction(step) {
   const validationFunctions = {
@@ -23,14 +25,6 @@ function getValidationFunction(step) {
   throw new Error(`No validation function for step ${step}`);
 }
 
-function validateRequiredField(value, name, label, errors) {
-  if (value === '') {
-    errors[name] = `The field "${label}" cannot be empty`;
-    return false;
-  }
-  return true;
-}
-
 function checkStep1(formData) {
   const firstName = formData.get('firstName');
   const lastName = formData.get('lastName');
@@ -44,22 +38,9 @@ function checkStep1(formData) {
 
 function checkStep2(formData) {
   const dateOfBirth = formData.get('dateOfBirth');
-  const parsedDateOfBirth = parse(dateOfBirth, 'yyyy-MM-dd', new Date());
+  let errors = {};
 
-  const errors = {};
-
-  if (!validateRequiredField(dateOfBirth, 'dateOfBirth', 'date of birth', errors)) {
-    return errors;
-  }
-
-  if (isFuture(parsedDateOfBirth)) {
-    errors.dateOfBirth = 'Date of birth cannot be later than the current date';
-    return errors;
-  }
-
-  if (differenceInYears(new Date(), parsedDateOfBirth) < 18) {
-    errors.dateOfBirth = 'Registration is available only from 18 years old';
-  }
+  validateDateOfBirth(dateOfBirth, errors);
 
   return errors;
 }
@@ -68,11 +49,7 @@ function checkStep3(formData) {
   const email = formData.get('email');
   const errors = {};
 
-  if (!email.match(/^\w+@{1}\w+[.]\w+$/g)) {
-    errors.email = 'Please enter a valid email';
-  }
-
-  validateRequiredField(email, 'email', 'email', errors);
+  validateEmail(email, errors);
 
   return errors;
 }
@@ -92,9 +69,7 @@ function checkStep5(formData) {
   const gender = formData.get('gender');
   const errors = {};
 
-  if (!gender) {
-    errors.gender = 'Please select your gender';
-  }
+  validateRequiredField(gender, 'gender', 'gender', errors, 'The field "gender" cannot be empty');
 
   return errors;
 }
@@ -105,16 +80,16 @@ function checkStep6(formData) {
   const hobbyOther = formData.get('hobbyOther');
   const errors = {};
 
-  if (hobby == '...') {
-    errors.hobby = 'Please select your hobby from the list';
+  if (!validateRequiredField(hobby, 'hobby', 'hobby', errors)) {
     return errors;
   }
 
-  if (!hobbyOther && (hobby2 == '...' || !hobby2)) {
-    errors.hobby2 = 'The field "interests" cannot be empty';
+  if (
+    !validateRequiredField(hobby2, 'hobby2', 'interests', errors) &&
+    !validateRequiredField(hobbyOther, 'hobbyOther', 'interests', errors)
+  ) {
+    return errors;
   }
-
-  return errors;
 }
 
 function checkStep7(formData) {
@@ -122,25 +97,7 @@ function checkStep7(formData) {
   const repeatPassword = formData.get('repeatPassword');
   const errors = {};
 
-  if (password.length < 6) {
-    errors.password = 'Password cannot be shorter than 6 characters';
-    return errors;
-  }
-  if (
-    !(
-      password.match(/[a-z]/) &&
-      password.match(/[A-Z]/) &&
-      password.match(/\d/) &&
-      password.match(/\p{P}/u)
-    )
-  ) {
-    errors.password =
-      'The password must contain lowercase and uppercase letters, numbers and a special character';
-    return errors;
-  }
-  if (repeatPassword != password) {
-    errors.repeatPassword = 'The entered passwords do not match';
-  }
+  validatePasswords(password, repeatPassword, errors);
 
   return errors;
 }
@@ -150,13 +107,7 @@ function checkStep8(formData) {
   const preview = formData.get('checkCrop');
   const errors = {};
 
-  if (picture.name == '') {
-    errors.userPic = 'Please upload your avatar';
-    return errors;
-  }
-  if (preview == null) {
-    errors.userPic = 'Please crop your avatar';
-  }
+  validateAvatar(picture, preview, errors);
 
   return errors;
 }
@@ -165,9 +116,14 @@ function checkStep9(formData) {
   const privacyPolicy = formData.get('privacyPolicy');
   const errors = {};
 
-  if (!privacyPolicy) {
-    errors.privacyPolicy = 'Please confirm your agreement with the privacy policy';
-  }
+  validateRequiredField(
+    privacyPolicy,
+    'privacyPolicy',
+    'privacy policy',
+    errors,
+    'Please confirm your agreement with the privacy policy'
+  );
+
   return errors;
 }
 
