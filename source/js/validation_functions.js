@@ -1,5 +1,6 @@
 import isFuture from 'date-fns/isFuture';
 import differenceInYears from 'date-fns/differenceInYears';
+import parse from 'date-fns/parse';
 
 function getValidationFunction(step) {
   const validationFunctions = {
@@ -43,18 +44,20 @@ function checkStep1(formData) {
 
 function checkStep2(formData) {
   const dateOfBirth = formData.get('dateOfBirth');
+  const parsedDateOfBirth = parse(dateOfBirth, 'yyyy-MM-dd', new Date());
+
   const errors = {};
 
   if (!validateRequiredField(dateOfBirth, 'dateOfBirth', 'date of birth', errors)) {
     return errors;
   }
 
-  if (isFuture(new Date(dateOfBirth))) {
+  if (isFuture(parsedDateOfBirth)) {
     errors.dateOfBirth = 'Date of birth cannot be later than the current date';
     return errors;
   }
 
-  if (differenceInYears(new Date(), new Date(dateOfBirth)) < 18) {
+  if (differenceInYears(new Date(), parsedDateOfBirth) < 18) {
     errors.dateOfBirth = 'Registration is available only from 18 years old';
   }
 

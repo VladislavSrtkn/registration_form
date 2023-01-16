@@ -1,4 +1,5 @@
 import format from 'date-fns/format';
+import parse from 'date-fns/parse';
 
 const userData = {};
 
@@ -14,7 +15,7 @@ function makeOutputForUserData(userDataObj) {
     lastName: `Last name: ${userDataObj.lastName} `,
     gender: `Gender: ${userDataObj.gender}`,
     dateOfBirth: `Date of birth: ${format(
-      new Date(userDataObj.dateOfBirth),
+      parse(userData.dateOfBirth, 'yyyy-MM-dd', new Date()),
       'do MMM y'
     )}`,
     email: `Email: ${userDataObj.email}`,
