@@ -3,6 +3,7 @@ export default function validateAvatar(picture, preview, errors) {
     errors['userPic'] = 'Please upload your avatar';
     return;
   }
+
   if (preview == null) {
     errors['userPic'] = 'Please crop your avatar';
   }

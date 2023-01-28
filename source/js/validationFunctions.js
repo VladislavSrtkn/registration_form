@@ -3,6 +3,7 @@ import validateDateOfBirth from './validateDateOfBirth';
 import validateEmail from './validateEmail';
 import validatePasswords from './validatePasswords';
 import validateAvatar from './validateAvatar';
+import { da } from 'date-fns/locale';
 
 function getValidationFunction(step) {
   const validationFunctions = {
@@ -37,11 +38,23 @@ function checkStep1(formData) {
 }
 
 function checkStep2(formData) {
-  const dateOfBirth = formData.get('dateOfBirth');
+  const date = formData.get('dayOfBirth');
+  const month = formData.get('monthOfBitrh');
+  const year = formData.get('yearOfBirth');
+
   let errors = {};
 
-  validateDateOfBirth(dateOfBirth, errors);
+  if (
+    !(
+      validateRequiredField(date, 'dayOfBirth', 'date', errors) &&
+      validateRequiredField(month, 'monthOfBitrh', 'month', errors) &&
+      validateRequiredField(year, 'yearOfBirth', 'year', errors)
+    )
+  ) {
+    return errors;
+  }
 
+  validateDateOfBirth(date, month, year, errors);
   return errors;
 }
 
@@ -84,12 +97,19 @@ function checkStep6(formData) {
     return errors;
   }
 
-  if (
-    !validateRequiredField(hobby2, 'hobby2', 'interests', errors) &&
-    !validateRequiredField(hobbyOther, 'hobbyOther', 'interests', errors)
-  ) {
+  if (hobby === 'Other') {
+    validateRequiredField(
+      hobbyOther,
+      'hobbyOther',
+      'interests',
+      errors,
+      'Please write a little about your hobby'
+    );
     return errors;
   }
+
+  validateRequiredField(hobby2, 'hobby2', 'interests', errors);
+  return errors;
 }
 
 function checkStep7(formData) {

@@ -76,10 +76,37 @@
           <form class="row g-3 justify-content-center">
             <h3>Enter your date of birth</h3>
             <p>Later you can hide it in your profile settings</p>
-            <div class="col-md-4">
-              <input type="date" class="form-control" name="dateOfBirth" />
-              <div data-invalid-feedback="dateOfBirth" class="invalid-feedback"></div>
+            <div class="col-md-2">
+              <label for="dayOfBirth" class="form-label">Date</label>
+              <input type="number" class="form-control" name="dayOfBirth" />
+              <div data-invalid-feedback="dayOfBirth" class="invalid-feedback"></div>
             </div>
+            <div class="col-md-3">
+              <label for="monthOfBitrh" class="form-label">Month</label>
+              <select class="form-select" name="monthOfBitrh">
+                <option value="" selected></option>
+                <option value="1">January</option>
+                <option value="2">February</option>
+                <option value="3">March</option>
+                <option value="4">April</option>
+                <option value="5">May</option>
+                <option value="6">June</option>
+                <option value="7">July</option>
+                <option value="8">August</option>
+                <option value="9">September</option>
+                <option value="10">October</option>
+                <option value="11">November</option>
+                <option value="12">December</option>
+              </select>
+              <div data-invalid-feedback="monthOfBitrh" class="invalid-feedback"></div>
+            </div>
+            <div class="col-md-2">
+              <label for="yearOfBirth" class="form-label">Year</label>
+              <input type="number" class="form-control" name="yearOfBirth" maxlength="4" />
+              <div data-invalid-feedback="yearOfBirth" class="invalid-feedback"></div>
+            </div>
+            <div data-invalid-feedback="dateOfBirth" class="invalid-feedback"></div>
+
             <div class="col-12 text-center my-3">
               <button type="button" class="btn btn-secondary" data-btn="back">
                 <svg
@@ -295,6 +322,7 @@
               />
 
               <div data-invalid-feedback="hobby2" class="invalid-feedback"></div>
+              <div data-invalid-feedback="hobbyOther" class="invalid-feedback"></div>
             </div>
 
             <div class="col-12 text-center my-3">
@@ -426,7 +454,13 @@
             <h3>Upload your avatar</h3>
             <p>Choose a photo to be displayed on your profile</p>
             <div class="col-md-4">
-              <input class="form-control" type="file" name="userPic" id="userPic" />
+              <input
+                class="form-control"
+                type="file"
+                name="userPic"
+                id="userPic"
+                accept="image/*"
+              />
               <input type="checkbox" name="checkCrop" class="d-none" />
 
               <div id="cropWrapper" class="my-3"></div>
